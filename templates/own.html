@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+  nav {
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #B21223;
+    padding: 10px;
+    font-weight: bold;
+    height: 40px;
+  }
+  
+  nav ul {
+    list-style: none;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  nav ul li {
+    position: relative;
+  }
+  
+  .c {
+        background-color: white;
+        background: linear-gradient(to bottom, rgb(94, 89, 89), rgb(94, 89, 89),black);
+        color: white;
+        margin-top: 20px;
+        margin-left:100px;
+        z-index: 2;
+        position: relative;
+        width: 23%;
+        border-radius: 8px;
+        height: 400px;
+        padding: 10px;
+        font-family: monospace;
+        float: left;
+    } 
+  
+
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: block;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  
+  nav ul li:hover {
+    background-color:black;
+  }
+  
+  nav ul li:hover .sub-menu1 {
+    display: block;
+  }
+  .sub-menu1 li {
+    display: block;
+  }
+  nav ul li:hover .sub-menu2 {
+    display: block;
+  }
+  .sub-menu2 li {
+    display: block;
+  }
+
+  .sub-menu1 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    height: 125px;
+    left: 0;
+    background-color: #B21223;
+  }
+  .sub-menu2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    height: 210px;
+    left: 0;
+    background-color: #B21223;
+  }
+
+    </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><img src="https://lh3.googleusercontent.com/a/ACg8ocJdev_IEy67WIHCxXZ3cqqKZOSw4Vclx61-yqo9I8aOX2s=s576-c-no"
+        width="200" height="200"></li>
+      <li><a href="/education">Education</a></li>
+      <li>
+        <a href="/students">Technologies</a>
+        <ul class="sub-menu2">
+            <li><a href="https://github.com/poglodjan/Python_experience">Python<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/R_expierence">R<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine <span style="margin-right: 10px;"></span><img style="float:right" src="/static/github.png" width="15"> Learning</a></li>
+          </ul>
+    </li>
+      <li>
+        <a href="/students">All of my projects</a>
+        <ul class="sub-menu1">
+          <li><a href="/students">Student projects</a></li>
+          <li><a href="/own">My own projects</a></li>
+          <li><a href="/comercial_projects">Commercial</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+<div class="all">
+  <h1 style="color:white; padding-left: 300px; font-family: monospace; width: 78%;">My projects are based on <span style="color:#1758E1">machine learning</span> techniques and <span style="color:#1758E1">data science.</span><br>
+    I am a young researcher who wants to use my mathematical knowledge to come up with something new. I am currently working on the following three projects:</h1>
+  
+<div class="c">
+    <h1 id="mach_l" class="title">Research on conscious sleep</h1>
+    <h3>I am a member of the start-up Exoself. We are conducting research on conscious sleep and, by interacting with the user at night, trying to enhance their creativity during the day. The start-up is at the level of notes on a piece of paper, has a couple of dozen people from the robotics circle and I am responsible for being an AI specialist. I aim to develop an algorithm to sustain conscious sleep</h3>
+    </div>
+
+<div class="c">
+    <h1 id="pyt" class="title">Auto Machine Learning Framework</h1>
+    <h3>I am a member of the circle of mathematical modeling and autoML algorithms at the Faculty of MiNI of Warsaw University of Technology. In the course of the circle's work, we try to build innovative methods combining multiple machine learning algorithms and applying stacking and ensemble learning. My current area is clustering</h3>
+    </div>
+</div>
+
+<div class="c">
+  <h2 id="mach_l" class="title">Applications of neural networks to solve ordinary differential equations</h2>
+  <h3>I am conducting a thesis on various methods of approximating ordinary differential solutions through modern neural network approaches. In the course of the work, I am only doing my own implementation of the network, comparing different methods of activation, optimization and architecture. My goal is to confirm that different types of MLPs could be more efficient or faster than traditional numerical methods</h3>
+  </div>
+    
+  <script>
+    anime({
+        targets: '.c', 
+        translateY: [window.innerHeight, 0], 
+        opacity: [0, 1], 
+        duration: 1000, 
+        easing: 'easeInOutQuad', 
+    });
+    </script>
+</body>
+</html>
+

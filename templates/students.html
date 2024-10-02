@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+  nav {
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #B21223;
+    padding: 10px;
+    z-index: 4;
+    position: relative;
+    font-weight: bold;
+    height: 40px;
+  }
+  
+  nav ul {
+    list-style: none;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  nav ul li {
+    position: relative;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: block;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  
+  nav ul li:hover {
+    background-color:black;
+  }
+  
+  nav ul li:hover .sub-menu1 {
+    display: block;
+  }
+  .sub-menu1 li {
+    display: block;
+  }
+  nav ul li:hover .sub-menu2 {
+    display: block;
+  }
+  .sub-menu2 li {
+    display: block;
+  }
+
+  .sub-menu1 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    height: 125px;
+    left: 0;
+    background-color: #B21223;
+  }
+  .sub-menu2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    height: 210px;
+    left: 0;
+    background-color: #B21223;
+  }
+  
+  .mach_learn {
+    background: linear-gradient(to right, #B21223, rgb(33, 97, 188),black);
+    color: white;
+    margin-top: 20px;
+    margin-left: 300px;
+    line-height: 1.35;
+    z-index: 2;
+    position: relative;
+    width: 1000px;
+    height: auto;
+    font-family: monospace;
+    border-radius: 8px;
+    font-size:14px;
+    float: left;
+    padding-left: 30px; 
+    padding-right: 30%;
+    box-sizing: border-box; 
+    padding-bottom: 20px;
+    height: auto;
+}
+
+  
+  .c1 {
+        background: linear-gradient(to right, rgb(140, 140, 37), rgb(57, 57, 220),black);
+        color: white;
+        margin-top: 20px;
+        margin-left: 300px;
+        line-height: 1.35;
+        z-index: 2;
+        position: relative;
+        width: 1000px;
+        height: 520px;
+        font-family: monospace;
+        border-radius: 8px;
+        font-size:14px;
+        float: left;
+        padding-left: 30px; 
+        padding-right: 30%;
+        box-sizing: border-box; 
+    }
+
+    .c2 {
+        background: linear-gradient(to right, rgb(104, 71, 203), rgb(146, 137, 231),black);
+        color: white;
+        margin-top: 20px;
+        margin-left: 300px;
+        line-height: 1.35;
+        z-index: 2;
+        position: relative;
+        width: 1000px;
+        height: 410px;
+        font-family: monospace;
+        border-radius: 8px;
+        font-size:14px;
+        float: left;
+        padding-left: 30px; 
+        padding-right: 30%;
+        box-sizing: border-box; 
+    }
+
+    .c3 {
+        background: linear-gradient(to right, rgb(203, 148, 71), rgb(209, 180, 143),black);
+        color: white;
+        margin-top: 20px;
+        margin-left: 300px;
+        line-height: 1.35;
+        z-index: 2;
+        position: relative;
+        width: 1000px;
+        height: 260px;
+        font-family: monospace;
+        border-radius: 8px;
+        font-size:14px;
+        float: left;
+        padding-left: 30px; 
+        padding-right: 30%;
+        box-sizing: border-box; 
+    }
+
+    .c4 {
+        background: linear-gradient(to right, rgb(47, 98, 181), rgba(255, 255, 255, 0.778),black);
+        color: white;
+        margin-top: 20px;
+        margin-left: 300px;
+        line-height: 1.35;
+        z-index: 2;
+        position: relative;
+        width: 1000px;
+        height: 320px;
+        font-family: monospace;
+        border-radius: 8px;
+        font-size:14px;
+        float: left;
+        padding-left: 30px; 
+        padding-right: 30%;
+        box-sizing: border-box; 
+    }
+
+    .c5 {
+        background: linear-gradient(to right, rgb(100, 59, 187), rgb(0, 0, 0),black);
+        color: white;
+        margin-top: 20px;
+        margin-left: 300px;
+        line-height: 1.35;
+        z-index: 2;
+        position: relative;
+        width: 1000px;
+        height: 200px;
+        font-family: monospace;
+        border-radius: 8px;
+        font-size:14px;
+        float: left;
+        padding-left: 30px; 
+        padding-right: 40%;
+        box-sizing: border-box; 
+    }
+
+    .c6 {
+        background: linear-gradient(to right, rgb(203, 121, 6), rgb(246, 49, 49),black);
+        color: white;
+        margin-top: 20px;
+        margin-left: 300px;
+        line-height: 1.35;
+        z-index: 2;
+        position: relative;
+        width: 1000px;
+        height: 220px;
+        font-family: monospace;
+        border-radius: 8px;
+        font-size:14px;
+        float: left;
+        padding-left: 30px; 
+        padding-right: 30%;
+        box-sizing: border-box; 
+    }
+
+
+    </style>
+</head>
+<body>
+    <nav>
+      <ul>
+        <li><img src="https://lh3.googleusercontent.com/a/ACg8ocJdev_IEy67WIHCxXZ3cqqKZOSw4Vclx61-yqo9I8aOX2s=s576-c-no"
+          width="200" height="200"></li>
+        <li><a href="/education">Education</a></li>
+        <li>
+          <a href="/students">Technologies</a>
+          <ul class="sub-menu2">
+              <li><a href="https://github.com/poglodjan/Python_experience">Python<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine <span style="margin-right: 10px;"></span><img style="float:right" src="/static/github.png" width="15"> Learning</a></li>
+            </ul>
+      </li>
+        <li>
+          <a href="/students">All of my projects</a>
+          <ul class="sub-menu1">
+            <li><a href="/students">Student projects</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
+          </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+
+<div class="all">
+
+<div class="mach_learn">
+    <h2 id="mach_l" class="title">Machine Learning</h2>
+    <a>
+      <b> My research area includes (ML algorithms):</b> <br><br>
+      [0] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/Decision%20Trees" target="_blank">
+        <b>Decision Trees</b></a> - comparison of parameters 
+     <a href="/static/Decision Trees.pdf" target="_blank">
+        <img id="pdfIcon1"src="/static/research.png" style="float: right;" alt="PDF Icon" width="16" height="16">
+      </a><br>
+
+       [1] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/Clustering" target="_blank">
+         <b>Clustering</b></a> - DBSCAN, KMeans, Hierarchic comparioson
+         <a href="/static/clastering research.pdf" target="_blank">
+         <img id="pdfIcon2"  src="/static/research.png" style="float: right;" alt="PDF Icon" width="16" height="16"></a><br>
+         [2] Logistic Regression and SVM for 
+      <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/Bank%20Project" target="_blank"><b>bank credit risk model</b></a>
+      <a href="/static/Bank research.pdf" target="_blank">
+      <img id="pdfIcon3" src="/static/research.png" style="float: right;" alt="PDF Icon" width="16" height="16"></a><br>
+
+      [3] Self-implemented <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/KNN" target="_blank"><b>KNN model</b></a>
+      <a href="/static/knn research.pdf" target="_blank">
+      <img id="pdfIcon4"  src="/static/research.png" style="float: right;" alt="PDF Icon" width="16" height="16"></a><br>
+      </a>
+
+      [4] Selecting the best model for <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/Predictions" target="_blank"><b>real data prediction</b></a>
+      <a href="/static/Project - real prediction.pdf" target="_blank">
+      <img id="pdfIcon5"  src="/static/research.png" style="float: right;" alt="PDF Icon" width="16" height="16"><br>
+      </a>
+
+      [5] Working on <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/autoML" target="_blank"><b>AutoML</b></a> algorithms<br><br>
+      <b>    (Neural networks and computational intelligence):</b><br><br>
+
+      [0] Self implementation of <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/Computational%20Intelligence" target="_blank"><b>MLP</b></a>, backpropagation, gradient normalization and momentum<br>
+      [1] Implementation of <a style="color:black; text-decoration: none;"><b>Kohen Networks</b></a><br>
+      [2] Implementation of <a style="color:black; text-decoration: none;"><b>evolutionary algorithms</b></a> <br><br>
+      <b>(Image recognision in matlab):</b><br><br>
+      <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning/machinelearning_matlab" target="_blank">
+        <b>Applications</b></a> of convex optimization, gradient descent, least squares, primal dual algorithm for image processing 
+          </a>
+    </div>
+
+<div class="c1">
+  <h2 id="pyt" class="title">Python</h2>
+    <a>
+    <b>(Corporate coding):</b><br><br>
+    [0] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/commercial_projects" target="_blank"><b>TKinter</b></a> 
+    - a corporate project that shows a dashboard (<b><a style="color:black;">.exe</a></b>) for an employer to select currency hedging options (for 30 models). 
+    It then calculates scenarios (<b><a style="color:black;">numpy</a></b>) and charts (<b><a style="color:black;">plotly</a></b>) to save on powerpoint presenatation (<b><a style="color:black;">pptx</a></b>)<br>
+    [1] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/flask" target="_blank"><b>Flask</b></a> 
+    - a corporate project that host <b><a style="color:black;">on web</a></b> a form to alocate employeers uploaded as excel file<br>
+    [2] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/automation" target="_blank"><b>Automation</b></a> 
+      - a corporate project automating Excel to process employee allocations<br><br>
+
+    <b> (Students and own work projects):</b><br><br>
+    [0] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/my_website" target="_blank"><b>This Website</b></a> - html + css + JavaScript + <b><a style="color:black;">flask + matplotlib</a></b> - code for graphs and self implemented Neural Network to visualize learning<br>
+    [1] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/py_sql_client_app" target="_blank"><b>Python + SQL</b></a> application - client application to <b><a style="color:black;">manage SQL</a></b> database<br>
+    [3] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/projects/data_analyst_pandas" target="_blank"><b>Data Analysis</b></a> - contains data analysis projects with <b><a style="color:black;">pandas</a></b>, includes sql and python comparison for data analysis<br>
+    [4] Project of using dynamic programming to solve <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience/tree/main/multi-dimensional%20knapsack%20algorithm" target="_blank"><b>multi-dimensional knapsack algorithm</b></a><br>
+    [5] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Python_experience" target="_blank"><b>20+ other projects</b></a> from Warsaw University Of Technology (like games, algorithms)
+  </a>
+    </div>
+    
+    <div class="c2">
+      <h2 id="r" class="title">R</h2> 
+      <a> [1] Netflix data exploration dashboard - The dashboard was created as <b><a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/R_expierence/tree/main/shiny_dashboard_application" target="_blank">RShiny application</a></b> and pushed on web. 
+        We can upload a file with data about our activity downloaded from Netflix, and then the dashboard arrives at an in-depth analysis of our trends, favorite actors' movies and time spent on the platform. <br><br>
+        [2] NY-project <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/R_expierence/tree/main/NY_project" target="_blank"><b>data exploration</b></a> with packages: 
+        <a style="color:black;"></a>dplyr, table, sql</b></a> analysing clients' activity from New York citi's bike hiring platform <br><br>
+        
+        [3] Data exploration from <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/R_expierence/tree/main/project" target="_blank"><b>airport's dataset</b></a> holding airport's activity data and speed comparison of different libraries for data analysis<br><br>
+    
+        [4] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/R_expierence/tree/main/methods%20of%20computer%20statistics" target="_blank"><b>Methods of computer statistics</b></a> - contains different methods of statistics and <b><a style="color:black;">correlation analysis</a></b> implemented R<br><br>
+        [5] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/R_expierence/tree/main/other_projects" target="_blank"><b>Other projects</b></a> from studies
+      </a>
+      </div>
+    
+      <div class="c3">
+        <h2 id="sql" class="title">SQL</h2>
+        <a>      
+          [0] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/SQL_experience/tree/main/SQL_queries" target="_blank"><b>Code</b></a>
+           - Creating databases in <b><a style="color:black;">azure data studio</a></b> and <b><a style="color:black;">Microsoft sql server</a></b>. Programming queries such as <b><a style="color:black;">
+            select, delete, insert, update</b></a>. Creating conditions and <b><a style="color:black;">where, order by, group by, join</b></a> clouses. Writing transactions, indexes and procedures related to access and foreign keys. <br>
+          <br><br>
+          [1] Knowledge of uploading <b><a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/SQL_experience" target="_blank">Python + SQL</b></a> 
+          application - client application to manage SQL database and programming sql querries in SAS studio<br>
+        </a>
+        </div>
+
+        <div class="c4">
+          <h2 id="c" class="title">C++ Object Oriented</h2>
+          <a>
+            <b>(C):</b><br><br>
+            <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/C_experience/tree/main/student%20projects" target="_blank"><b>Structure programming in C</b></a> containg tasks from studies and research on allocation problem<br>
+
+            <br><b> (C++ object oriented):</b><br><br>
+            Laboratory tasks carried out during the course of study of computer science and information systems. Topics I can<br> include <b><a style="color:black; text-decoration: none;"> objects, classes, inheritance, function overloading and operators.</a></b> I can also handle exceptions, polymorphism and encapsulation<br>
+            My implementation of classes are <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/C_experience/tree/main/C%2B%2B%20object%20oriented" target="_blank"><b>here</b></a> 
+          </a>
+          </div>
+
+          <div class="c5">
+            <h2 id="sas" class="title">SAS</h2>
+            <a>
+              <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/SQL_experience/tree/main/SAS" target="_blank"><b>Tasks</b></a> 
+               carried out during the course of study for mathematics and data analysis: programming data structures in SAS, data processing, statistical analysis, macro programming. Creation of SQL queries in SAS.
+               <br> Preparing for SAS data science certification
+            </a>
+            </div>
+
+            <div class="c6">
+              <h2 id="mat" class="title">Matlab</h2>
+              <a>
+                [0] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Matlab_experience/tree/main/machinelearning_project" target="_blank"><b>machine learning project</b></a> 
+                - the main topic was processing images of coffee cups using gradient descent (for projection and image) and lbfg methods<br>
+                [1] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Matlab_experience/tree/main/leastsquares" target="_blank"><b>least squares</b></a> 
+                 - a project to implement the least squares method and apply it to some functions<br>
+                [2] <a style="color:black; text-decoration: none;" href="https://github.com/poglodjan/Matlab_experience/tree/main/image_processing_project" target="_blank"><b>image processing</b></a> 
+                - other projects for image processing in matlab
+              </a>
+              </div>
+  </div>
+    
+  <script src="scrollMonitor.js"></script>
+  <script>
+
+// animations
+      anime({
+        targets: '.mach_learn', 
+        translateX: [window.innerWidth, 0], 
+        opacity: [0, 1], 
+        duration: 1000, 
+        easing: 'easeInOutQuad', 
+    });
+
+      anime({
+        targets: '.c1', 
+        translateX: [-window.innerWidth, 0], 
+        opacity: [0, 1], 
+        duration: 1000, 
+        easing: 'easeInOutQuad', 
+    });
+  
+    anime({
+        targets: '.c2', 
+        translateX: [window.innerWidth, 0], 
+        opacity: [0, 1], 
+        duration: 1000, 
+        easing: 'easeInOutQuad', 
+    });
+
+
+  </script>
+  
+</body>
+</html>
+

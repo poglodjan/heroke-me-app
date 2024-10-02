@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+  nav {
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #B21223;
+    padding: 10px;
+    font-weight: bold;
+    height: 40px;
+  }
+  
+  nav ul {
+    list-style: none;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  nav ul li {
+    position: relative;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: block;
+    z-index: 2;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  
+  nav ul li:hover {
+    background-color:black;
+  }
+  
+  nav ul li:hover .sub-menu1 {
+    display: block;
+  }
+  .sub-menu1 li {
+    display: block;
+  }
+  nav ul li:hover .sub-menu2 {
+    display: block;
+  }
+  .sub-menu2 li {
+    display: block;
+  }
+
+  .sub-menu1 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    height: 125px;
+    left: 0;
+    background-color: #B21223;
+  }
+  .sub-menu2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    height: 210px;
+    left: 0;
+    background-color: #B21223;
+  }
+
+  .place1 {
+        background-color: black;
+        color: white;
+        padding-top: 30px;
+        margin-left:400px;
+        width: 100px;
+        font-family: monospace;
+        z-index: 1;
+        position: relative;
+        cursor: pointer;
+        float: left;
+        box-sizing: border-box;
+    }
+    .place2 {
+        background-color: black;
+        color: white;
+        font-family: monospace;
+        padding-top: 30px;
+        position: relative;
+        cursor: pointer;
+        margin-left:100px;
+        z-index: 1;
+        float: left;
+        box-sizing: border-box;
+    }
+    .place3 {
+        background-color: black;
+        color: white;
+        font-family: monospace;
+        z-index: 1;
+        cursor: pointer;
+        position: relative;
+        padding-top: 30px;
+        margin-left:100px;
+        float: left;
+        box-sizing: border-box;
+    }
+    .place4 {
+        background-color: black;
+        color: white;
+        font-family: monospace;
+        z-index: 1;
+        cursor: pointer;
+        position: relative;
+        padding-top: 30px;
+        margin-left:100px;
+        float: left;
+        box-sizing: border-box;
+    }
+    .cloud {
+        display: none;
+        position: fixed;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -66%);
+        background-color: white;
+        color: black;
+        padding: 20px;
+        border-radius: 20px;
+        font-size: 20px;
+        height: 300px;
+        width: 600px;
+    }
+    #citi:hover + .cloud-citi,
+    #coi:hover + .cloud-coi,
+    #gp:hover + .cloud-gp,
+    #deloitte:hover + .cloud-deloitte {
+        display: block;
+    }
+
+    .image1 {
+  margin-top: 40px;
+  width: 100%;
+  height: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0; 
+  background-image: url('/static/citi3.png');
+  position: fixed;
+  bottom: 20;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  transition: opacity 2s ease;
+}
+
+.image3{
+  margin-top: 40px;
+  width: 700px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  background-image: url('/static/coi1.png');
+  position: fixed;
+  bottom: 20;
+  border-radius: 10px;
+  margin-top: 200px;
+  transition: opacity 2s ease;
+}
+
+.image4{
+  margin-top: 40px;
+  width: 100%;
+  height: 600px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0; 
+  background-image: url('/static/gp1.png');
+  position: fixed;
+  float: right;
+  right: 0;
+  border-radius: 10px;
+  margin-top: 200px;
+  transition: opacity 0.5s ease;
+}
+
+.image1_chart {
+  margin-top: 40px;
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0; 
+  background-image: url('/static/citi1.png');
+  position: fixed;
+  border-radius: 10px;
+  transform: translateX(1000px);
+  transform: translateY(100px);
+  float: right;
+  right: 0;
+  margin-right: 20px;
+  transition: opacity 3s ease;
+}
+
+.del_chart {
+  margin-top: 40px;
+  width: 350px;
+  height: 350px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0; 
+  background-image: url('/static/deloitte2.png');
+  position: fixed;
+  border-radius: 10px;
+  transform: translateX(800px);
+  transform: translateY(100px);
+  float: right;
+  right: 0;
+  transition: opacity 3s ease;
+}
+
+.image2 {
+  margin-top: 40px;
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0; 
+  background-image: url('/static/deloitte1.png');
+  position: fixed;
+  bottom: 0;
+  transform: translateX(40%);
+  transform: translateY(20%);
+  transition: opacity 0.5s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+.show-image {
+  opacity: 1; 
+}
+
+    </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><img src="https://lh3.googleusercontent.com/a/ACg8ocJdev_IEy67WIHCxXZ3cqqKZOSw4Vclx61-yqo9I8aOX2s=s576-c-no"
+        width="200" height="200"></li>
+      <li><a href="/education">Education</a></li>
+      <li>
+        <a href="/students">Technologies</a>
+        <ul class="sub-menu2">
+            <li><a href="https://github.com/poglodjan/Python_experience">Python<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/R_expierence">R<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
+            <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine <span style="margin-right: 10px;"></span><img style="float:right" src="/static/github.png" width="15"> Learning</a></li>
+          </ul>
+    </li>
+      <li>
+        <a href="/students">All of my projects</a>
+        <ul class="sub-menu1">
+          <li><a href="/students">Student projects</a></li>
+          <li><a href="/own">My own projects</a></li>
+          <li><a href="/comercial_projects">Commercial</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="content" style="height: 50%; float: top;">
+<div class="place1">
+    <h2 id="citi" class="title">Project#1</h2>
+    <div class="cloud cloud-citi" style="background-color:dodgerblue;">(1) <b>Python .exe application with tkinter, matplotlib, numpy libraries</b> for dealers to automatically prepare PowerPoint presentations with currency options for clients to price risks.<br><br>
+        (2) Automatic customer activity data analysis system with <b>pandas, scipy</b> <br><br>
+        (3) Creation of a time and transaction cost calculator <b>JavaScript</b> website</div>
+    </div>
+    
+    <div class="place2">
+    <h2 id="coi" class="title">Project#2</h2>
+    <div class="cloud cloud-coi" style="background-color: cadetblue;">(1) Using Python, R <b>(dplyr)</b> programming tools to create a form in <b>Flask</b> technology collecting data and allocating employees. Then allocated on <b>AWS</b>.<br><br>
+      (2) Using <b>Jira Confluence</b> tools<br><br>
+      (3) Planning pivot tables to visualize employee data
+    </div>
+    </div>
+    
+    <div class="place3">
+    <h2 id="deloitte" class="title">Deloitte Ambasador</h2>
+    <div class="cloud cloud-deloitte" style="background-color:lightgreen"><b>Tech Ambasador Program</b>
+      <iframe width="600" height="280" src="https://www.youtube.com/embed/y0quyHHuo2w?list=PLDGux9QmmYFRSFh1YSgD2LpDXmT8M4EF_" title="#37 Kobiety w świecie biznesu i technologii." 
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      autoplay></iframe></div>
+    </div>
+
+    <div class="place4">
+      <h2 id="gp" class="title">Coding Giants</h2>
+      <div class="cloud cloud-gp" style="background-color:yellow"><b>Teaching children how to program</b><br><br>
+        Since 2022, I have been passionately teaching programming to children ages 8-18 at coding giants. The material I impart is the knowledge of programming in <b> Python</b>  (in minecraft!) in <b>Lua</b> (in Roblox!) and web development. In addition, I also taught <b>C#</b> in Unity and machine learning in app inventor - apps for phones
+        </div>
+        </div> 
+     </div>
+        <div class="image1" style="float: left; margin-top: 300px;"></div>
+        <div class="image1_chart" style="float: right;"></div>
+        <div class="del_chart" style="float: right;"></div>
+        <div class="image2" style="float: right; margin-top: 300px;"></div>
+        <div class="image3"></div>
+        <div class="image4"></div>
+  <script>
+
+document.getElementById("citi").addEventListener("mouseover", function() {
+  document.querySelector('.image1').classList.add('show-image');
+});
+document.getElementById("citi").addEventListener("mouseout", function() {
+  document.querySelector('.image1').classList.remove('show-image');
+});
+
+document.getElementById("citi").addEventListener("mouseover", function() {
+  document.querySelector('.image1_chart').classList.add('show-image');
+});
+document.getElementById("citi").addEventListener("mouseout", function() {
+  document.querySelector('.image1_chart').classList.remove('show-image');
+});
+
+document.getElementById("deloitte").addEventListener("mouseover", function() {
+  document.querySelector('.image2').classList.add('show-image');
+});
+document.getElementById("deloitte").addEventListener("mouseout", function() {
+  document.querySelector('.image2').classList.remove('show-image');
+});
+
+document.getElementById("deloitte").addEventListener("mouseover", function() {
+  document.querySelector('.del_chart').classList.add('show-image');
+});
+document.getElementById("deloitte").addEventListener("mouseout", function() {
+  document.querySelector('.del_chart').classList.remove('show-image');
+});
+
+document.getElementById("coi").addEventListener("mouseover", function() {
+  document.querySelector('.image3').classList.add('show-image');
+});
+document.getElementById("coi").addEventListener("mouseout", function() {
+  document.querySelector('.image3').classList.remove('show-image');
+});
+
+document.getElementById("gp").addEventListener("mouseover", function() {
+  document.querySelector('.image4').classList.add('show-image');
+});
+document.getElementById("gp").addEventListener("mouseout", function() {
+  document.querySelector('.image4').classList.remove('show-image');
+});
+    </script>
+</body>
+</html>
+
