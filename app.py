@@ -3,14 +3,13 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objs as go
-from flask_sse import sse
 import time
 import random
+#from flask_sse import sse
+#app.register_blueprint(sse, url_prefix='/stream')
+# #app.config['REDIS_URL'] = 'redis://localhost:6379/0'
 
 app = Flask(__name__)
-app.register_blueprint(sse, url_prefix='/stream')
-#app.config['REDIS_URL'] = 'redis://localhost:6379/0'
-
 @app.route('/comercial_projects')
 def commercial_projects():
     return redirect(url_for('commercial_projects_page'))
