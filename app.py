@@ -9,7 +9,7 @@ import random
 
 app = Flask(__name__)
 app.register_blueprint(sse, url_prefix='/stream')
-app.config['REDIS_URL'] = 'redis://localhost:6379/0'
+#app.config['REDIS_URL'] = 'redis://localhost:6379/0'
 
 @app.route('/comercial_projects')
 def commercial_projects():
