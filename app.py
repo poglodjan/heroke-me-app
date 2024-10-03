@@ -40,6 +40,13 @@ def own_page():
 
 @app.route('/education')
 def education():
+    return redirect(url_for('education_page'))
+@app.route('/education_page')
+def education_page():
+    return render_template('education.html')
+
+@app.route('/profile')
+def profile():
     return index()
 
 @app.route('/')

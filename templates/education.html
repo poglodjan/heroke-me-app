@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        nav {
+            background-color: #B21223;
+            padding: 10px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-family: monospace;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            font-family: monospace;
+            display: block;
+        }
+
+        .nav-links li:hover {
+            background-color: black;
+        }
+
+        /* Oś czasu */
+        .timeline-container {
+            position: relative;
+            max-width: 80%;
+            margin: 50px auto;
+        }
+
+        .timeline {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            background-color: white;
+            top: 0;
+            height: 1200px;
+            bottom: 0;
+        }
+
+        .timeline-entry {
+            position: relative;
+            width: 45%;
+            padding: 10px 40px;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-entry.left {
+            float: left;
+            text-align: right;
+            clear: both;
+        }
+
+        .timeline-entry.right {
+            float: right;
+            text-align: left;
+            clear: both;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-entry.left::before {
+            right: -20px;
+        }
+
+        .timeline-entry.right::before {
+            left: -20px;
+        }
+
+        .timeline-year {
+            font-size: 18px;
+            color: #B21223;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-family: monospace;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .timeline-entry {
+                width: 100%;
+                text-align: center;
+            }
+
+            .timeline-entry.left, .timeline-entry.right {
+                float: none;
+                text-align: center;
+            }
+
+            .timeline {
+                left: 50%;
+            }
+
+            .timeline-entry::before {
+                left: calc(50% - 7.5px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Master's student in data science</div>
+      <ul class="nav-links">
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/education">Education</a></li>
+        <li><a href="/students">Technologies</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Oś czasu -->
+  <div class="timeline-container">
+    <div class="timeline"></div>
+
+    <div class="timeline-entry left">
+        <div class="timeline-year">2018 - 2021</div>
+        <div class="timeline-content">
+          <div class="timeline-title">maths-physics-informatics profile</div>
+          <i>XVIII Jan Zamoyski high school in Warsaw</i>
+        </div>
+    </div>
+    <div class="timeline-entry left">
+        <div class="timeline-year">2021 - 2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Mathematics and Data Analysis</div>
+          <i>Bachelor's degree at Warsaw University of Technology.</i>
+        </div>
+    </div>
+
+    <div class="timeline-entry right">
+        <div class="timeline-year">04.2022 - 10.2022</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Work at COI | part-time, home-based</div>
+          <i>Internship in IT project management team.</i>
+        </div>
+    </div>
+
+    <div class="timeline-entry right">
+        <div class="timeline-year">07.2023 - 07.2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Work at Citibank | part-time, office</div>
+          <i>Data analysis and risk management position.</i>
+        </div>
+    </div>
+
+    <div class="timeline-entry right">
+        <div class="timeline-year">10.2023 - 06.2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Deloitte Ambassador | freelance projects</div>
+          <i>Conducting tech projects and participating in podcasts.</i>
+        </div>
+    </div>
+
+    <div class="timeline-entry left">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">1/2 year exchange - Data Science & AI</div>
+          <i>Master's studies at University of Antwerp, Belgium.</i>
+        </div>
+    </div>
+
+    <div class="timeline-entry left">
+        <div class="timeline-year">2024 - 2026</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Data Science</div>
+          <i>Master's studies at Warsaw University of Technology.</i>
+        </div>
+    </div>
+
+    <div class="timeline-entry right">
+        <div class="timeline-year">08.2024 - 10.2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Work at ICON plc | full-time, home-based</div>
+          <i>Clinical research with data science algorithms.</i>
+        </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

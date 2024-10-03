@@ -16,122 +16,133 @@
     background-color: black;
   }
   
+
   nav {
-    font-family: monospace;
-    font-size: 14px;
-    background-color: #B21223;
-    padding: 10px;
-    font-weight: bold;
-    height: 40px;
+  background-color: #B21223;
+  padding: 10px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-family: monospace;
+  display: block;
+}
+
+.nav-links li:hover {
+  background-color: black;
+}
+
+.nav-links li:hover .sub-menu {
+  display: block;
+}
+
+/* Style submenu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #B21223;
+  padding: 10px 0;
+}
+
+.sub-menu li {
+  display: block;
+  padding: 5px 20px;
+}
+
+.sub-menu li a {
+  display: block;
+  padding: 10px;
+}
+
+.sub-menu li:hover {
+  background-color: #333;
+}
+
+/* Responsywne zmiany */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  nav ul {
-    list-style: none;
-    height: 40px;
-    margin: 0;
-    padding: 0;
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.active {
     display: flex;
-    justify-content: space-around;
   }
-  
-  nav ul li {
-    position: relative;
+
+  .nav-links li {
+    width: 100%;
   }
-  
-  nav ul li a {
-    text-decoration: none;
+
+  .nav-links li a {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .sub-menu {
+    position: static;
+  }
+}
+
+  .place1, .place2, .place3, .place4, .place5 {
+    background-color: black;
     color: white;
-    padding: 10px;
-    display: block;
-    z-index: 2;
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-  
-  nav ul li:hover {
-    background-color:black;
-  }
-  
-  nav ul li:hover .sub-menu1 {
-    display: block;
-  }
-  .sub-menu1 li {
-    display: block;
-  }
-  nav ul li:hover .sub-menu2 {
-    display: block;
-  }
-  .sub-menu2 li {
-    display: block;
-  }
+    padding-top: 30px;
+    width: 100px;
+    font-family: monospace;
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 20px; /* Odstęp między elementami */
+    box-sizing: border-box;
+    display: block; /* Każdy element jest blokowy, więc będzie ustawiony pionowo */
+    margin-left: 5%; /* Możesz zmienić, jeśli chcesz wyśrodkować lub wyrównać */
+}
 
-  .sub-menu1 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    height: 125px;
-    left: 0;
-    background-color: #B21223;
-  }
-  .sub-menu2 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    z-index: 2;
-    height: 210px;
-    left: 0;
-    background-color: #B21223;
-  }
-
-  .place1 {
-        background-color: black;
-        color: white;
-        padding-top: 30px;
-        margin-left:400px;
-        width: 100px;
-        font-family: monospace;
-        z-index: 1;
-        position: relative;
-        cursor: pointer;
-        float: left;
-        box-sizing: border-box;
-    }
-    .place2 {
-        background-color: black;
-        color: white;
-        font-family: monospace;
-        padding-top: 30px;
-        position: relative;
-        cursor: pointer;
-        margin-left:100px;
-        z-index: 1;
-        float: left;
-        box-sizing: border-box;
-    }
-    .place3 {
-        background-color: black;
-        color: white;
-        font-family: monospace;
-        z-index: 1;
-        cursor: pointer;
-        position: relative;
-        padding-top: 30px;
-        margin-left:100px;
-        float: left;
-        box-sizing: border-box;
-    }
-    .place4 {
-        background-color: black;
-        color: white;
-        font-family: monospace;
-        z-index: 1;
-        cursor: pointer;
-        position: relative;
-        padding-top: 30px;
-        margin-left:100px;
-        float: left;
-        box-sizing: border-box;
-    }
     .cloud {
         display: none;
         position: fixed;
@@ -148,6 +159,7 @@
     }
     #citi:hover + .cloud-citi,
     #coi:hover + .cloud-coi,
+    #clin:hover + .cloud-clin,
     #gp:hover + .cloud-gp,
     #deloitte:hover + .cloud-deloitte {
         display: block;
@@ -259,60 +271,70 @@
 </head>
 <body>
   <nav>
-    <ul>
-      <li><img src="https://lh3.googleusercontent.com/a/ACg8ocJdev_IEy67WIHCxXZ3cqqKZOSw4Vclx61-yqo9I8aOX2s=s576-c-no"
-        width="200" height="200"></li>
-      <li><a href="/education">Education</a></li>
-      <li>
-        <a href="/students">Technologies</a>
-        <ul class="sub-menu2">
-            <li><a href="https://github.com/poglodjan/Python_experience">Python<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/R_expierence">R<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine <span style="margin-right: 10px;"></span><img style="float:right" src="/static/github.png" width="15"> Learning</a></li>
+    <div class="nav-container">
+      <div class="logo">Master's student in data science</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links">
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/education">Education</a></li>
+        <li>
+          <a href="/students">Technologies</a>
+          <ul class="sub-menu sub-menu2">
+              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Projects ↓</a>
+          <ul class="sub-menu sub-menu1">
+            <li><a href="/students">Student projects</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
           </ul>
-    </li>
-      <li>
-        <a href="/students">All of my projects</a>
-        <ul class="sub-menu1">
-          <li><a href="/students">Student projects</a></li>
-          <li><a href="/own">My own projects</a></li>
-          <li><a href="/comercial_projects">Commercial</a></li>
-        </ul>
-      </li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
   <div class="content" style="height: 50%; float: top;">
 <div class="place1">
-    <h2 id="citi" class="title">Project#1</h2>
+    <h2 id="citi" class="title">Finance engineering</h2>
     <div class="cloud cloud-citi" style="background-color:dodgerblue;">(1) <b>Python .exe application with tkinter, matplotlib, numpy libraries</b> for dealers to automatically prepare PowerPoint presentations with currency options for clients to price risks.<br><br>
         (2) Automatic customer activity data analysis system with <b>pandas, scipy</b> <br><br>
         (3) Creation of a time and transaction cost calculator <b>JavaScript</b> website</div>
     </div>
     
     <div class="place2">
-    <h2 id="coi" class="title">Project#2</h2>
+    <h2 id="coi" class="title">IT</h2>
     <div class="cloud cloud-coi" style="background-color: cadetblue;">(1) Using Python, R <b>(dplyr)</b> programming tools to create a form in <b>Flask</b> technology collecting data and allocating employees. Then allocated on <b>AWS</b>.<br><br>
       (2) Using <b>Jira Confluence</b> tools<br><br>
       (3) Planning pivot tables to visualize employee data
     </div>
     </div>
-    
+
     <div class="place3">
+      <h2 id="clin" class="title">Clinical researches</h2>
+      <div class="cloud cloud-clin" style="background-color: rgb(23, 211, 152);">(1) Using data science algorithms and computer statistics methods to conduct clinical researches. <br>
+        <br>(2) Performing analysis in <b>SAS</b> and using python to automate daily tasks
+      </div>
+      </div>
+    
+    <div class="place4">
     <h2 id="deloitte" class="title">Deloitte Ambasador</h2>
-    <div class="cloud cloud-deloitte" style="background-color:lightgreen"><b>Tech Ambasador Program</b>
+    <div class="cloud cloud-deloitte" style="background-color:rgb(4, 146, 4)"><b>Tech Ambasador Program</b>
       <iframe width="600" height="280" src="https://www.youtube.com/embed/y0quyHHuo2w?list=PLDGux9QmmYFRSFh1YSgD2LpDXmT8M4EF_" title="#37 Kobiety w świecie biznesu i technologii." 
       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       autoplay></iframe></div>
     </div>
 
-    <div class="place4">
-      <h2 id="gp" class="title">Coding Giants</h2>
+    <div class="place5">
+      <h2 id="gp" class="title">Teaching kids</h2>
       <div class="cloud cloud-gp" style="background-color:yellow"><b>Teaching children how to program</b><br><br>
-        Since 2022, I have been passionately teaching programming to children ages 8-18 at coding giants. The material I impart is the knowledge of programming in <b> Python</b>  (in minecraft!) in <b>Lua</b> (in Roblox!) and web development. In addition, I also taught <b>C#</b> in Unity and machine learning in app inventor - apps for phones
+        For 2, I have been passionately teaching programming to children ages 8-18 at coding giants. The material I impart is the knowledge of programming in <b> Python</b>  (in minecraft!) in <b>Lua</b> (in Roblox!) and web development. In addition, I also taught <b>C#</b> in Unity and machine learning in app inventor - apps for phones
         </div>
         </div> 
      </div>
@@ -323,6 +345,10 @@
         <div class="image3"></div>
         <div class="image4"></div>
   <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
 
 document.getElementById("citi").addEventListener("mouseover", function() {
   document.querySelector('.image1').classList.add('show-image');

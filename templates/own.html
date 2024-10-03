@@ -16,34 +16,124 @@
     background-color: black;
   }
   
+
   nav {
-    font-family: monospace;
-    font-size: 14px;
-    background-color: #B21223;
-    padding: 10px;
-    font-weight: bold;
-    height: 40px;
+  background-color: #B21223;
+  padding: 10px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-family: monospace;
+  display: block;
+}
+
+.nav-links li:hover {
+  background-color: black;
+}
+
+.nav-links li:hover .sub-menu {
+  display: block;
+}
+
+/* Style submenu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #B21223;
+  padding: 10px 0;
+}
+
+.sub-menu li {
+  display: block;
+  padding: 5px 20px;
+}
+
+.sub-menu li a {
+  display: block;
+  padding: 10px;
+}
+
+.sub-menu li:hover {
+  background-color: #333;
+}
+
+/* Responsywne zmiany */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  nav ul {
-    list-style: none;
-    height: 40px;
-    margin: 0;
-    padding: 0;
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.active {
     display: flex;
-    justify-content: space-around;
   }
-  
-  nav ul li {
-    position: relative;
+
+  .nav-links li {
+    width: 100%;
   }
+
+  .nav-links li a {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .sub-menu {
+    position: static;
+  }
+}
   
   .c {
         background-color: white;
         background: linear-gradient(to bottom, rgb(94, 89, 89), rgb(94, 89, 89),black);
         color: white;
         margin-top: 20px;
-        margin-left:100px;
+        margin-left: 7%;
         z-index: 2;
         position: relative;
         width: 23%;
@@ -54,83 +144,42 @@
         float: left;
     } 
   
-
-  nav ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 10px;
-    display: block;
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-  
-  nav ul li:hover {
-    background-color:black;
-  }
-  
-  nav ul li:hover .sub-menu1 {
-    display: block;
-  }
-  .sub-menu1 li {
-    display: block;
-  }
-  nav ul li:hover .sub-menu2 {
-    display: block;
-  }
-  .sub-menu2 li {
-    display: block;
-  }
-
-  .sub-menu1 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    height: 125px;
-    left: 0;
-    background-color: #B21223;
-  }
-  .sub-menu2 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    height: 210px;
-    left: 0;
-    background-color: #B21223;
-  }
-
     </style>
 </head>
 <body>
   <nav>
-    <ul>
-      <li><img src="https://lh3.googleusercontent.com/a/ACg8ocJdev_IEy67WIHCxXZ3cqqKZOSw4Vclx61-yqo9I8aOX2s=s576-c-no"
-        width="200" height="200"></li>
-      <li><a href="/education">Education</a></li>
-      <li>
-        <a href="/students">Technologies</a>
-        <ul class="sub-menu2">
-            <li><a href="https://github.com/poglodjan/Python_experience">Python<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/R_expierence">R<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP<span style="margin-right: 10px;"></span><img style="float: right;" src="/static/github.png" width="15"></a></li>
-            <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine <span style="margin-right: 10px;"></span><img style="float:right" src="/static/github.png" width="15"> Learning</a></li>
+    <div class="nav-container">
+      <div class="logo">Master's student in data science</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links">
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/education">Education</a></li>
+        <li>
+          <a href="/students">Technologies</a>
+          <ul class="sub-menu sub-menu2">
+              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Projects ↓</a>
+          <ul class="sub-menu sub-menu1">
+            <li><a href="/students">Student projects</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
           </ul>
-    </li>
-      <li>
-        <a href="/students">All of my projects</a>
-        <ul class="sub-menu1">
-          <li><a href="/students">Student projects</a></li>
-          <li><a href="/own">My own projects</a></li>
-          <li><a href="/comercial_projects">Commercial</a></li>
-        </ul>
-      </li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
 
 <div class="all">
-  <h1 style="color:white; padding-left: 300px; font-family: monospace; width: 78%;">My projects are based on <span style="color:#1758E1">machine learning</span> techniques and <span style="color:#1758E1">data science.</span><br>
+  <h1 style="color:white; padding-left: 10%; font-family: monospace; width: 80%;">My projects are based on <span style="color:#1758E1">machine learning</span> techniques and <span style="color:#1758E1">data science.</span><br>
     I am a young researcher who wants to use my mathematical knowledge to come up with something new. I am currently working on the following three projects:</h1>
   
 <div class="c">
@@ -150,6 +199,10 @@
   </div>
     
   <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
     anime({
         targets: '.c', 
         translateY: [window.innerHeight, 0], 
