@@ -7,7 +7,7 @@
     <title>Profile</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
-
+    
     <style>
         body {
     font-family: Arial, sans-serif;
@@ -15,9 +15,10 @@
     padding: 0;
     background-color: black;
   }
+  
 
-nav {
-  background-color: #B21223;
+  nav {
+  background-color: #333;
   padding: 10px;
 }
 
@@ -74,8 +75,9 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #B21223;
+  background-color: #333;
   padding: 10px 0;
+  z-index: 10;
 }
 
 .sub-menu li {
@@ -89,7 +91,7 @@ nav {
 }
 
 .sub-menu li:hover {
-  background-color: #333;
+  background-color: #030000;
 }
 
 /* Responsywne zmiany */
@@ -127,66 +129,108 @@ nav {
   }
 }
 
-  .plotly-chart2{
-    margin-left: auto;
-    margin-right: auto;
-    width: 1200px;
-  }
-   .hidden{
-      opacity: 0%;
-      margin-left: auto;
-      margin-right: auto;
-      width: 1200px;
-  }
+        /* Styl kontenera wykresów */
+        .chart-container {
+            background-color: #222;
+            margin: 1% 5%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
 
-  .sub-menu1 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    height: auto;
-    left: 0;
-    background-color: #B21223;
-  }
-  .sub-menu2 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    height: auto;
-    left: 0;
-    background-color: #B21223;
-  }
-  .label-container{
-    padding:20px;
-    font-family: monospace;
-    background-color: #B21223;
-    padding-left:5%;
-    color:white;
-    width: 400px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-    font-size:20px;
-  }
-  .subtitle{
-    height: auto;
-    font-family: monospace;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    margin-left: 5%;
-    font-weight: bold;
-    color: white;
-    position: relative;
-    z-index: -1;
-    word-spacing: 5px;
-    line-height: 1.5; 
-    width: 90%;
-    font-size: 20px;
-  }
+        .chart-background {
+            background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            bottom: -100px;
+            left: -100px;
+            z-index: 1;
+            opacity: 0.3;
+        }
 
-  #plotly-chart {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease; 
-}
+        .subtitle {
+            position: relative;
+            z-index: 2;
+            font-size: 18px;
+            font-family: monospace;
+            line-height: 1.8;
+            color: #d3d3d3;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .subtitle a {
+            color: #1758E1;
+            text-decoration: none;
+        }
+
+        h1 {
+            color: #1758E1;
+            font-weight: bold;
+            font-family: monospace;
+            margin-left: 5%;
+            font-size: 28px;
+        }
+
+        .label-container {
+            margin-left: 5%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #444;
+            color: white;
+            display: inline-block;
+        }
+
+        .label {
+            font-size: 18px;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        #plotly-chart, #plotly-chart2 {
+            margin: 20px 5%;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, opacity 0.3s;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        #plotly-chart.show, #plotly-chart2.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .round-log {
+            font-size: 100px;
+            color: #1758E1;
+            margin-bottom: 50px;
+            text-align: center;
+            font-family: monospace;
+        }
+
+        /* Animacja pojawiania się */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hover na wykresie */
+        #plotly-chart:hover, #plotly-chart2:hover {
+            transform: scale(1.02);
+        }
 
     </style>
 </head>
@@ -220,38 +264,39 @@ nav {
       </ul>
     </div>
   </nav>
-        <div class="chart-container">
-          <div class="chart-background">
-          </div>
-          <div class="subtitle">
-            <div class="label">Welcome to my website! I'm happy to share my experience with you and
-                would love to use my creativity and knowledge to perhaps one day work with you on your project.
-                I am bachelor's graduate in <a style="color:#1758E1">mathematics and data analysis</a>
-                and a student of master's <a style="color:#1758E1">data science</a> (2024-2026) at Warsaw University of Technology,
-                Faculty of Mathematics and Information Sciences (MiNI). Below I have posted my knowledge that I gained during my studies and on my own projects.
-                I encourage you to look at the other tabs to get to know me better!
-              <a style="color:#B21223">currently looking for a job</a> </div>
-        </div>
-      </div>
-      </div>
-        <br>
-        <h1 style="color:#1758E1 ; font-weight: bold;font-family: monospace; margin-left:5%;"
-        >My strength and enjoyment in the subjects:</h1>
 
-        <div class="label-container">
-            <div class="label"><b>Computer Science Knowledge</b></div>
-        </div>
+  <div class="chart-container">
+    <div class="chart-background"></div>
+    <div class="subtitle">
+      <div class="label">
+        Welcome to my website! I'm happy to share my experience with you and would love to use my creativity and knowledge to perhaps one day work with you on your project.
+        I am bachelor's graduate in <a href="#">mathematics and data analysis</a> and a student of master's <a href="#">data science</a> (2024-2026) at Warsaw University of Technology, Faculty of Mathematics and Information Sciences (MiNI).
+        Below I have posted my knowledge that I gained during my studies and on my own projects. I encourage you to look at the other tabs to get to know me better!
+      </div>
+    </div>
+  </div>
 
-        <div id="plotly-chart">
-            {{ graph_html|safe }}
-        </div>
-        <div class="label-container" style="background-color:#1758E1">
-            <div class="label"><b>Mathematics Knowledge</b></div>
-        </div>
-        <div class="round-log" style="font-size: 100px; color:#1758E1;margin-top: 100px;margin-bottom: 100px; text-align: center;font-family: monospace;">0%</div>
-        <div id="plotly-chart2" style="width:100%" class="hidden">
-            {{ graph_html2|safe }}
-        </div>
+  <h1>My strength and enjoyment in the subjects:</h1>
+
+  <div class="label-container">
+    <div class="label"><b>Computer Science Knowledge</b></div>
+  </div>
+
+  <div id="plotly-chart">
+    <!-- Insert your chart here -->
+    {{ graph_html|safe }}
+  </div>
+
+  <div class="label-container">
+    <div class="label"><b>Mathematics Knowledge</b></div>
+  </div>
+
+  <div class="round-log">0%</div>
+
+  <div id="plotly-chart2" class="hidden">
+    <!-- Insert your second chart here -->
+    {{ graph_html2|safe }}
+  </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script>
@@ -259,56 +304,44 @@ nav {
       const navLinks = document.querySelector('.nav-links');
       navLinks.classList.toggle('active');
     }
+
     window.addEventListener('load', function() {
-    var plotlyChart = document.getElementById('plotly-chart');
-    plotlyChart.style.opacity = 1;
-    plotlyChart.style.transform = 'translateY(0)';
-    anime({
-        targets: '#plotly-chart',
-        opacity: [0, 1],
-        translateY: [50, 0],
-        duration: 1000,
-        easing: 'easeInOutQuad',
+      var plotlyChart = document.getElementById('plotly-chart');
+      plotlyChart.classList.add('show');
     });
-});
 
-let ifwas = 0;
-let end=0;
-const chartsContainer = document.getElementById('plotly-chart2');
-var plotlyChart = document.getElementById('plotly-chart2');
+    let ifwas = 0;
+    const chartsContainer = document.getElementById('plotly-chart2');
+    var plotlyChart2 = document.getElementById('plotly-chart2');
 
-if (ifwas === 0) {
-    window.addEventListener('scroll', () => {
-        const windowHeight = window.innerHeight;
-        const chartsContainerTop = chartsContainer.getBoundingClientRect().top;
+    if (ifwas === 0) {
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const chartsContainerTop = chartsContainer.getBoundingClientRect().top;
 
-        if (chartsContainerTop < windowHeight && ifwas === 0) {
-            ifwas = 1;
+            if (chartsContainerTop < windowHeight && ifwas === 0) {
+                ifwas = 1;
 
-var roundLogEl = document.querySelector('.round-log');
-            anime({
-  targets: roundLogEl,
-  innerHTML: [0, "100%"],
-  easing: 'linear',
-  round: 1,
-  duration: 1000,
-  complete: function() {
-            roundLogEl.innerHTML = '';
-            do_that();
-        }
-});
+                var roundLogEl = document.querySelector('.round-log');
+                anime({
+                    targets: roundLogEl,
+                    innerHTML: [0, "100%"],
+                    easing: 'linear',
+                    round: 1,
+                    duration: 1600,
+                    complete: function() {
+                        roundLogEl.innerHTML = '';
+                        do_that();
+                    }
+                });
 
-function do_that(){
-        plotlyChart.classList.remove('hidden');
-        roundLogEl.remove();
-        anime({
-  targets: '#plotly-chart2',
-    opacity: [0,1]
-});}
-        }
-    });
-}
-
-        </script>
+                function do_that(){
+                    plotlyChart2.classList.remove('hidden');
+                    plotlyChart2.classList.add('show');
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

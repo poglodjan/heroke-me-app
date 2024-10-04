@@ -2,54 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Education</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            color: white;
-        }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
 
-        nav {
-            background-color: #B21223;
-            padding: 10px;
-        }
+nav {
+  background-color: #333;
+  padding: 10px;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        .logo {
-            color: white;
-            font-family: monospace;
-            font-size: 20px;
-        }
+.logo {
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+}
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-        }
+.hamburger {
+  display: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
 
-        .nav-links li a {
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-            font-family: monospace;
-            display: block;
-        }
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
 
-        .nav-links li:hover {
-            background-color: black;
-        }
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-family: monospace;
+  display: block;
+}
+
+.nav-links li:hover {
+  background-color: black;
+}
+
+.nav-links li:hover .sub-menu {
+  display: block;
+}
+
+/* Style submenu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.sub-menu li {
+  display: block;
+  padding: 5px 20px;
+}
+
+.sub-menu li a {
+  display: block;
+  padding: 10px;
+}
+
+.sub-menu li:hover {
+  background-color: #030000;
+}
 
         /* Oś czasu */
         .timeline-container {
@@ -153,11 +194,28 @@
   <nav>
     <div class="nav-container">
       <div class="logo">Master's student in data science</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
       <ul class="nav-links">
         <li><a href="/profile">Profile</a></li>
         <li><a href="/education">Education</a></li>
-        <li><a href="/students">Technologies</a></li>
-        <li><a href="/projects">Projects</a></li>
+        <li>
+          <a href="/students">Technologies</a>
+          <ul class="sub-menu sub-menu2">
+              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Projects ↓</a>
+          <ul class="sub-menu sub-menu1">
+            <li><a href="/students">Student projects</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
+          </ul>
+        </li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
@@ -214,6 +272,13 @@
         </div>
     </div>
 
+    <div class="timeline-entry right">
+        <div class="timeline-year">08.2024 - 10.2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Work at ICON plc | full-time, home-based</div>
+          <i>Clinical research with data science algorithms.</i>
+        </div>
+    </div>
     <div class="timeline-entry left">
         <div class="timeline-year">2024 - 2026</div>
         <div class="timeline-content">
@@ -222,15 +287,12 @@
         </div>
     </div>
 
-    <div class="timeline-entry right">
-        <div class="timeline-year">08.2024 - 10.2024</div>
-        <div class="timeline-content">
-          <div class="timeline-title">Work at ICON plc | full-time, home-based</div>
-          <i>Clinical research with data science algorithms.</i>
-        </div>
-    </div>
-
   </div>
-
+    <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+    </script>
 </body>
 </html>
