@@ -137,10 +137,10 @@
     z-index: 1;
     position: relative;
     cursor: pointer;
-    margin-bottom: 20px; /* Odstęp między elementami */
+    margin-bottom: 20px; 
     box-sizing: border-box;
-    display: block; /* Każdy element jest blokowy, więc będzie ustawiony pionowo */
-    margin-left: 5%; /* Możesz zmienić, jeśli chcesz wyśrodkować lub wyrównać */
+    display: block; 
+    margin-left: 5%; 
 }
 
     .cloud {
@@ -148,7 +148,7 @@
         position: fixed;
         top: 60%;
         left: 50%;
-        transform: translate(-50%, -66%);
+        transform: translate(-50%, -100%);
         background-color: white;
         color: black;
         padding: 20px;
@@ -165,107 +165,73 @@
         display: block;
     }
 
-    .image1 {
-  margin-top: 40px;
-  width: 100%;
-  height: 400px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0; 
-  background-image: url('/static/citi3.png');
-  position: fixed;
-  bottom: 20;
-  border-radius: 10px;
-  padding-bottom: 10px;
-  transition: opacity 2s ease;
-}
-
-.image3{
-  margin-top: 40px;
-  width: 700px;
-  height: 500px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0;
-  background-image: url('/static/coi1.png');
-  position: fixed;
-  bottom: 20;
-  border-radius: 10px;
-  margin-top: 200px;
-  transition: opacity 2s ease;
-}
-
-.image4{
-  margin-top: 40px;
-  width: 100%;
-  height: 600px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0; 
-  background-image: url('/static/gp1.png');
-  position: fixed;
-  float: right;
-  right: 0;
-  border-radius: 10px;
-  margin-top: 200px;
-  transition: opacity 0.5s ease;
-}
-
-.image1_chart {
-  margin-top: 40px;
-  width: 300px;
-  height: 300px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0; 
-  background-image: url('/static/citi1.png');
-  position: fixed;
-  border-radius: 10px;
-  transform: translateX(1000px);
-  transform: translateY(100px);
-  float: right;
-  right: 0;
-  margin-right: 20px;
-  transition: opacity 3s ease;
-}
-
-.del_chart {
-  margin-top: 40px;
-  width: 350px;
-  height: 350px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0; 
-  background-image: url('/static/deloitte2.png');
-  position: fixed;
-  border-radius: 10px;
-  transform: translateX(800px);
-  transform: translateY(100px);
-  float: right;
-  right: 0;
-  transition: opacity 3s ease;
-}
-
-.image2 {
-  margin-top: 40px;
-  width: 100%;
-  height: 400px;
-  border-radius: 10px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0; 
-  background-image: url('/static/deloitte1.png');
-  position: fixed;
-  bottom: 0;
-  transform: translateX(40%);
-  transform: translateY(20%);
-  transition: opacity 0.5s ease;
-  margin-left: auto;
-  margin-right: auto;
-}
 .show-image {
   opacity: 1; 
 }
+
+/* Ogólne style dla obrazów */
+.image-container,
+.image-container-citi,
+.image-container-del,
+.image-container-gp,
+.image-container-clin {
+  position: fixed;
+  height: 30%;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+.image-citi,
+.image-del,
+.image-coi,
+.image-gp,
+.image-clin {
+  width: 90%;
+  border: 5px solid #1758E1; /* Możesz zmienić na inny kolor, jeśli potrzebujesz */
+  border-radius: 20px;
+  transition: opacity 2s ease;
+}
+
+.special-container,
+.special-container-coi {
+  position: fixed;
+  width: 25%;             
+  right: 1%;                        /* Ustawienie najbardziej po prawej stronie */
+  top: 50%;                         /* Wyśrodkowanie wertykalne */
+  transform: translateY(-50%);       /* Przesunięcie o 50% w górę, aby być idealnie na środku */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.special-image,
+.special-image-coi {
+  width: 100%;                      /* Obraz zajmuje całą szerokość kontenera */
+  border: 5px solid #1758E1;        /* Ramka obrazu */
+  border-radius: 20px;              /* Zaokrąglone rogi */
+  transition: opacity 2s ease;
+}
+
+
+
+/* Gdy klasa "show-image" jest aktywna, obrazki się pojawiają */
+.image-container-citi.show-image,
+.special-container.show-image,
+.special-container-coi.show-image,
+.image-container.show-image,
+.image-container-del.show-image,
+.image-container-gp.show-image,
+.image-container-clin.show-image {
+  opacity: 1;
+}
+
 
     </style>
 </head>
@@ -278,21 +244,21 @@
         <li><a href="/profile">Profile</a></li>
         <li><a href="/education">Education</a></li>
         <li>
-          <a href="/students">Technologies</a>
+          <a href="/students">Technologies ≡</a>
           <ul class="sub-menu sub-menu2">
               <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
               <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
               <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
-              <li><a href="https://github.com/poglodjan/C_experience">C/C++ OOP <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/github.png" width="15"></a></li>
               <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
             </ul>
         </li>
         <li>
           <a href="#">Projects ↓</a>
           <ul class="sub-menu sub-menu1">
-            <li><a href="/students">Student projects</a></li>
-            <li><a href="/own">My own projects</a></li>
             <li><a href="/comercial_projects">Commercial</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/students">Student projects</a></li>
           </ul>
         </li>
         <li><a href="/contact">Contact</a></li>
@@ -324,8 +290,8 @@
       </div>
     
     <div class="place4">
-    <h2 id="deloitte" class="title">Deloitte Ambasador</h2>
-    <div class="cloud cloud-deloitte" style="background-color:rgb(4, 146, 4)"><b>Tech Ambasador Program</b>
+    <h2 id="deloitte" class="title">Deloitte Ambassador</h2>
+    <div class="cloud cloud-deloitte" style="background-color:rgb(4, 146, 4)"><b>Tech Ambassador Program</b>
       <iframe width="600" height="280" src="https://www.youtube.com/embed/y0quyHHuo2w?list=PLDGux9QmmYFRSFh1YSgD2LpDXmT8M4EF_" title="#37 Kobiety w świecie biznesu i technologii." 
       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       autoplay></iframe></div>
@@ -334,63 +300,70 @@
     <div class="place5">
       <h2 id="gp" class="title">Teaching kids</h2>
       <div class="cloud cloud-gp" style="background-color:yellow"><b>Teaching children how to program</b><br><br>
-        For 2, I have been passionately teaching programming to children ages 8-18 at coding giants. The material I impart is the knowledge of programming in <b> Python</b>  (in minecraft!) in <b>Lua</b> (in Roblox!) and web development. In addition, I also taught <b>C#</b> in Unity and machine learning in app inventor - apps for phones
+        For 2 years (2022-2024) I was passionately teaching programming to children ages 8-18 at coding giants. The material I impart is the knowledge of programming in <b> Python</b>  (in minecraft!) in <b>Lua</b> (in Roblox!) and web development. In addition, I also taught <b>C#</b> in Unity and machine learning in app inventor - apps for phones
         </div>
         </div> 
      </div>
-        <div class="image1" style="float: left; margin-top: 300px;"></div>
-        <div class="image1_chart" style="float: right;"></div>
-        <div class="del_chart" style="float: right;"></div>
-        <div class="image2" style="float: right; margin-top: 300px;"></div>
-        <div class="image3"></div>
-        <div class="image4"></div>
+        <div class="special-container-coi"><img src="/static/coi1.jpeg" class="special-image-coi" alt="Image"></div>
+        <div class="image-container-citi"><img src="/static/citi3.png" class="image-citi" alt="Citi Image"></div>
+        <div class="special-container"><img src="/static/citi1.png" class="special-image" alt="Citi Image2"></div>
+        <div class="image-container-del"><img src="/static/deloitte1.png" class="image-del" alt="Deloitte Image"></div>
+        <div class="image-container-clin"><img src="/static/clin.png" class="image-clin" alt="Clin Image"></div>
+        <div class="image-container-gp"><img src="/static/gp1.png" class="image-gp" alt="GP Image"></div>
   <script>
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
       navLinks.classList.toggle('active');
     }
 
-document.getElementById("citi").addEventListener("mouseover", function() {
-  document.querySelector('.image1').classList.add('show-image');
-});
-document.getElementById("citi").addEventListener("mouseout", function() {
-  document.querySelector('.image1').classList.remove('show-image');
-});
 
-document.getElementById("citi").addEventListener("mouseover", function() {
-  document.querySelector('.image1_chart').classList.add('show-image');
-});
-document.getElementById("citi").addEventListener("mouseout", function() {
-  document.querySelector('.image1_chart').classList.remove('show-image');
-});
-
-document.getElementById("deloitte").addEventListener("mouseover", function() {
-  document.querySelector('.image2').classList.add('show-image');
-});
-document.getElementById("deloitte").addEventListener("mouseout", function() {
-  document.querySelector('.image2').classList.remove('show-image');
-});
-
-document.getElementById("deloitte").addEventListener("mouseover", function() {
-  document.querySelector('.del_chart').classList.add('show-image');
-});
-document.getElementById("deloitte").addEventListener("mouseout", function() {
-  document.querySelector('.del_chart').classList.remove('show-image');
-});
-
-document.getElementById("coi").addEventListener("mouseover", function() {
-  document.querySelector('.image3').classList.add('show-image');
+  document.getElementById("coi").addEventListener("mouseover", function() {
+  document.querySelector('.special-container-coi').classList.add('show-image');
 });
 document.getElementById("coi").addEventListener("mouseout", function() {
-  document.querySelector('.image3').classList.remove('show-image');
+  document.querySelector('.special-container-coi').classList.remove('show-image');
 });
 
+// Citi
+document.getElementById("citi").addEventListener("mouseover", function() {
+  document.querySelector('.image-container-citi').classList.add('show-image');
+});
+document.getElementById("citi").addEventListener("mouseout", function() {
+  document.querySelector('.image-container-citi').classList.remove('show-image');
+});
+
+document.getElementById("citi").addEventListener("mouseover", function() {
+  document.querySelector('.special-container').classList.add('show-image');
+});
+document.getElementById("citi").addEventListener("mouseout", function() {
+  document.querySelector('.special-container').classList.remove('show-image');
+});
+
+// Deloitte
+document.getElementById("deloitte").addEventListener("mouseover", function() {
+  document.querySelector('.image-container-del').classList.add('show-image');
+});
+document.getElementById("deloitte").addEventListener("mouseout", function() {
+  document.querySelector('.image-container-del').classList.remove('show-image');
+});
+
+// gp
 document.getElementById("gp").addEventListener("mouseover", function() {
-  document.querySelector('.image4').classList.add('show-image');
+  document.querySelector('.image-container-gp').classList.add('show-image');
 });
 document.getElementById("gp").addEventListener("mouseout", function() {
-  document.querySelector('.image4').classList.remove('show-image');
+  document.querySelector('.image-container-gp').classList.remove('show-image');
 });
+
+// Clinical
+document.getElementById("clin").addEventListener("mouseover", function() {
+  document.querySelector('.image-container-clin').classList.add('show-image');
+});
+document.getElementById("clin").addEventListener("mouseout", function() {
+  document.querySelector('.image-container-clin').classList.remove('show-image');
+});
+
+
     </script>
 </body>
 </html>
