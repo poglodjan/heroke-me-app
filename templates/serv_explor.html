@@ -165,52 +165,62 @@
 
 
         .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            padding-top: 50px;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    padding-top: 50px;
+}
 
-        .project-tile {
-            background-color: #444;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 15px;
-        }
+.project-tile {
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .project-tile:hover {
-            transform: scale(1.05);
-        }
+.project-tile:hover {
+    transform: scale(1.05);
+}
 
-        .project-title {
-            padding: 10px;
-            font-size: 18px;
-            text-align: center;
-            color: white;
-            font-family: monospace;
-            background-color: #555;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
+.project-title {
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    font-family: monospace;
+    background-color: #555;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-        .plot-container {
-            background-color: #555;
-            border-radius: 10px;
-            padding: 10px;
-            height: auto;
-        }
+.plot-container {
+    background-color: #555;
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
 
+.plot {
+    width: 100%;  /* ensures the plot takes up the full width of the container */
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    border: none;
+    box-sizing: border-box;
+}
 
-        .plot {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 500px) {
             .project-grid {
                 grid-template-columns: 1fr;
             }
@@ -259,45 +269,56 @@
     </select>
 </div>
 
-<div class="project-grid">
+<div id="loading" style="text-align: center; font-size: 24px; color: white;">
+  Loading...
+</div>
+
+<div class="project-grid" id="content" style="display: none;">
   <div class="project-tile">
-      <div class="project-title">Analysis 1</div>
-      <div class="plot-container">
-          {{ pca_fig | safe }}
-      </div>
-  </div>
-  
-  <div class="project-tile">
-      <div class="project-title">Analysis 2</div>
-      <div class="plot-container">
-          {{ corr_fig | safe }}
-      </div>
-  </div>
-  
-  {% if importance_fig %}
-  <div class="project-tile">
-      <div class="project-title">Analysis 3</div>
-      <div class="plot-container">
-          {{ importance_fig | safe }}
-      </div>
-  </div>
-  {% endif %}
-  
-  {% if cm_fig %}
-  <div class="project-tile">
-      <div class="project-title">Analysis 4</div>
-      <div class="plot-container">
-          {{ cm_fig | safe }}
-      </div>
-  </div>
-  {% endif %}
+    <div class="project-title">Analysis 1</div>
+    <div class="plot-container">
+        {{ pca_fig | safe }}
+    </div>
+</div>
+
+<div class="project-tile">
+    <div class="project-title">Analysis 2</div>
+    <div class="plot-container">
+        {{ corr_fig | safe }}
+    </div>
+</div>
+
+{% if importance_fig %}
+<div class="project-tile">
+    <div class="project-title">Analysis 3</div>
+    <div class="plot-container">
+        {{ importance_fig | safe }}
+    </div>
+</div>
+{% endif %}
+
+{% if cm_fig %}
+<div class="project-tile">
+    <div class="project-title">Analysis 4</div>
+    <div class="plot-container">
+        {{ cm_fig | safe }}
+    </div>
+</div>
+{% endif %}
 </div>
 
 <script>
-  document.getElementById('dataset-select').addEventListener('change', function() {
-      const selectedDataset = this.value;
-      window.location.href = `/explor_page?dataset=${selectedDataset}`;
-  });
+window.addEventListener('load', function() {
+    // Ukrycie elementu "loading" i pokazanie "content"
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'grid';
+
+});
+
+document.getElementById('dataset-select').addEventListener('change', function() {
+    const selectedDataset = this.value;
+    window.location.href = `/explor_page?dataset=${selectedDataset}`;
+});
 
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
