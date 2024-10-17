@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    
+    <style>
+    body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+  }
+  
+
+  nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-family: monospace;
+  display: block;
+}
+
+.nav-links li:hover {
+  background-color: black;
+}
+
+.nav-links li:hover .sub-menu {
+  display: block;
+}
+
+/* Style submenu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.sub-menu li {
+  display: block;
+  padding: 5px 20px;
+}
+
+.sub-menu li a {
+  display: block;
+  padding: 10px;
+}
+
+.sub-menu li:hover {
+  background-color: #030000;
+}
+
+/* Responsywne zmiany */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .sub-menu {
+    position: static;
+  }
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.input-container label {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-family: monospace;
+    color: white;
+}
+
+        .input-container select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            width: 200px;
+            max-width: 100%;
+            font-family: monospace;
+            background-color: #333;
+            color: white;
+        }
+
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            padding-top: 50px;
+        }
+
+        .project-tile {
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+        }
+
+        .project-tile:hover {
+            transform: scale(1.05);
+        }
+
+        .project-title {
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            font-family: monospace;
+            background-color: #555;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .plot-container {
+            background-color: #555;
+            border-radius: 10px;
+            padding: 10px;
+            height: auto;
+        }
+
+
+        .plot {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Data Analysis</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links">
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/education">Education</a></li>
+        <li>
+          <a href="/students">Technologies ≡</a>
+          <ul class="sub-menu sub-menu2">
+              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Projects ↓</a>
+          <ul class="sub-menu sub-menu1">
+            <li><a href="/comercial_projects">Commercial</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/students">Student projects</a></li>
+          </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="input-container">
+    <label for="dataset-select"><span style="color:#983e3e;">PowerPointIsBoring</span> instead create interactive web presentations for your clients from data analysis. Select one dataset below and see some sample real-time analyses:</label>
+    <select id="dataset-select">
+        <option value="iris" {% if selected_dataset == 'iris' %}selected{% endif %}>Iris</option>
+        <option value="titanic" {% if selected_dataset == 'titanic' %}selected{% endif %}>Titanic</option>
+        <option value="wine" {% if selected_dataset == 'wine' %}selected{% endif %}>Wine</option>
+    </select>
+</div>
+
+<div class="project-grid">
+  <div class="project-tile">
+      <div class="project-title">Analysis 1</div>
+      <div class="plot-container">
+          {{ pca_fig | safe }}
+      </div>
+  </div>
+  
+  <div class="project-tile">
+      <div class="project-title">Analysis 2</div>
+      <div class="plot-container">
+          {{ corr_fig | safe }}
+      </div>
+  </div>
+  
+  {% if importance_fig %}
+  <div class="project-tile">
+      <div class="project-title">Analysis 3</div>
+      <div class="plot-container">
+          {{ importance_fig | safe }}
+      </div>
+  </div>
+  {% endif %}
+  
+  {% if cm_fig %}
+  <div class="project-tile">
+      <div class="project-title">Analysis 4</div>
+      <div class="plot-container">
+          {{ cm_fig | safe }}
+      </div>
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  document.getElementById('dataset-select').addEventListener('change', function() {
+      const selectedDataset = this.value;
+      window.location.href = `/explor_page?dataset=${selectedDataset}`;
+  });
+
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+    
+    </script>
+</body>
+</html>
+

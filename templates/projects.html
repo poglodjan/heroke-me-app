@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+  
+        nav {
+            background-color: #333;
+            padding: 10px;
+            position: relative;
+            z-index: 10; /* Ustawienie z-index na nawigacji, aby była nad kafelkami */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-family: monospace;
+            font-size: 20px;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 25px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            font-family: monospace;
+            display: block;
+        }
+
+        .nav-links li:hover {
+            background-color: black;
+        }
+
+        .nav-links li:hover .sub-menu {
+            display: block;
+        }
+
+        /* Style submenu */
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .sub-menu li {
+            display: block;
+            padding: 5px 20px;
+        }
+
+        .sub-menu li a {
+            display: block;
+            padding: 10px;
+        }
+
+        .sub-menu li:hover {
+            background-color: #030000;
+        }
+
+        /* Responsywne zmiany */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links li a {
+                padding: 15px;
+                width: 100%;
+            }
+
+            .sub-menu {
+                position: static;
+            }
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            padding-top: 50px;
+            position: relative;
+            z-index: 1; 
+        }
+
+        .project-tile {
+            position: relative;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 1; 
+        }
+
+        .project-tile:hover {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-title {
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            font-family: monospace;
+        }
+
+        .project-description {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            visibility: hidden;
+        }
+
+        .project-tile:hover .project-description {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Services</div>
+            <ul class="nav-links">
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/education">Education</a></li>
+                <li>
+                    <a href="/students">Technologies ≡</a>
+                    <ul class="sub-menu sub-menu2">
+                        <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                        <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                        <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                        <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                        <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Projects ↓</a>
+                    <ul class="sub-menu sub-menu1">
+                        <li><a href="/comercial_projects">Commercial</a></li>
+                        <li><a href="/own">My own projects</a></li>
+                        <li><a href="/students">Student projects</a></li>
+                    </ul>
+                </li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-grid">
+        <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/fin')">
+            <div class="project-image" style="background-image: url('/static/dalle_fin.webp');"></div>
+            <div class="project-title">Finance Risk Management</div>
+            <div class="project-description">
+                A tool for assessing financial risk. It employs statistical models to predict market volatility. Helps organizations mitigate financial risks effectively.
+            </div>
+        </div>
+        <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/explor')">
+            <div class="project-image" style="background-image: url('/static/dalle_explor.webp');"></div>
+            <div class="project-title">Data Exploration</div>
+            <div class="project-description">
+                A interactive way to visualize machine learning algorithms like PCA, random forest Logistic Regression and Feature importance for simple datasets.
+            </div>
+        </div>
+        <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/ode')">
+            <div class="project-image" style="background-image: url('/static/dalle_ode.webp');"></div>
+            <div class="project-title">Neural Networks for ODE</div>
+            <div class="project-description">
+                This project explores neural networks applied to solve ODEs. It provides innovative techniques for modeling complex systems where you can modify parameters and look how NN learns.
+            </div>
+        </div>
+        <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/block')">
+            <div class="project-image" style="background-image: url('/static/dalle_blockchain.webp');"></div>
+            <div class="project-title">Blockchain App (in work)</div>
+            <div class="project-description">
+                A blockchain application for secure transactions. It utilizes distributed ledger technology to prevent fraud. The project with SQL database is about exchanging digital money in the digital real estate market.
+            </div>
+        </div>
+        <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/bio')">
+            <div class="project-image" style="background-image: url('/static/dalle_bio.webp');"></div>
+            <div class="project-title">Bioinformatics</div>
+            <div class="project-description">
+                This project involves analyzing biological data. It focuses on DNA sequencing and Drug development.
+            </div>
+        </div>
+        <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/rain')">
+            <div class="project-image" style="background-image: url('/static/dalle_rain.png');"></div>
+            <div class="project-title">Reinforcement Learning</div>
+            <div class="project-description">
+                A project on reinforcement learning for decision-making. It uses reward systems to train models. Particularly effective in robotics and game AI.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Reset opacity for all tiles when the page loads
+        window.onload = function() {
+            const tiles = document.querySelectorAll('.project-tile');
+            tiles.forEach(tile => {
+                tile.style.opacity = '1';
+            });
+        };
+
+        // Function to fade out tiles and then redirect
+        function fadeOutTiles(redirectUrl) {
+            const tiles = document.querySelectorAll('.project-tile');
+            let delay = 0;
+            for (let i = tiles.length - 1; i >= 0; i--) {
+                setTimeout(() => {
+                    tiles[i].style.transition = 'opacity 0.5s ease';
+                    tiles[i].style.opacity = '0';
+                    if (i === 0) {
+                        setTimeout(() => {
+                            window.location.href = redirectUrl;
+                        }, 500);
+                    }
+                }, delay);
+                delay += 100;
+            }
+        }
+    </script>
+</body>
+</html>

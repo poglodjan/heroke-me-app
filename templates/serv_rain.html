@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Reinforcement learning</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
     
     <style>
-        body {
-    font-family: Arial, sans-serif;
+    body {
+    font-family: monospace, sans-serif;
     margin: 0;
     padding: 0;
     background-color: black;
+    color: white;
   }
   
 
@@ -21,6 +22,30 @@
   background-color: #333;
   padding: 10px;
 }
+
+.chart-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+          margin: 20px auto;
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+          max-width: 800px;
+          overflow: hidden;
+      }
+
+      .subtitle {
+            position: relative;
+            z-index: 2;
+            font-size: 18px;
+            font-family: monospace;
+            line-height: 1.8;
+            color: #d3d3d3;
+            text-align: center;
+        }
 
 .nav-container {
   display: flex;
@@ -128,33 +153,59 @@
   }
 }
 
-  .place1 {
-        background-color: black;
-        color: white;
-        margin-top: 50px;
-        margin-left:10%;
-        height: 400px;
-        width: auto;
-        font-family: monospace;
-        float: left;
-    }
-    .place2 {
-        background-color: black;
-        color: white;
-        margin-top: 50px;
-        margin-left:10%;
-        height: 400px;
-        width: auto;
-        font-family: monospace;
-        float: left;
-    }
+h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        .project-tile {
+            background-color: #444;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .project-tile:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            text-align: center;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+        .run-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+            }
+        }
 
     </style>
 </head>
 <body>
   <nav>
     <div class="nav-container">
-      <div class="logo">Contact</div>
+      <div class="logo">Reinforcement learning</div>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
       <ul class="nav-links">
         <li><a href="/profile">Profile</a></li>
@@ -182,47 +233,42 @@
     </div>
   </nav>
 
-<div class="all">
-<div class="place1">
-  <h1>Me:</h1>
-    <h2 id="citi" class="title">Visit by <a href="https://www.linkedin.com/in/jan-poglod/" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-    <img src="https://banner2.cleanpng.com/20180518/yk/kisspng-computer-icons-linkedin-5aff0283a31f04.0344839015266617636682.jpg" width="40">
-
-    <h2 id="citi" class="title">Visit by <a href="https://github.com/poglodjan" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-      <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" width="40">
-
-      <br>
-      <h2>+48 735 928 366</h2>
-      <h2>poglodjan@gmail.com</h2>
-    </div>
-
-  <div class="place2">
-    <h1>Rabyte Assosiaction:</h1>
-    <h2 id="citi" class="title">Visit by <a href="https://rabyte.pl" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-      <img src="https://banner2.cleanpng.com/20180518/yk/kisspng-computer-icons-linkedin-5aff0283a31f04.0344839015266617636682.jpg" width="40">
-  
-        <h2 id="citi" class="title">Visit by <a href="https://www.facebook.com/rabyteassociation" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgiEE6r1c47eWrOG1peHvCPdl5jDo6bqpfeQ&usqp=CAU" width="40">
-    </div>
-  
-    <div class="place2">
-      <h1>Exoself:</h1>
-        <h3 id="citi" class="title">Text me on email:<br>poglodjan@gmail.com</h3>
-    
+  <div class="chart-container">
+  <div>
+      <div class="subtitle">
+          <div class="label">Simulation of policies - The Frozen Lake game. Using reinforcement learning below in real-time, two maps are generated: an optimal and a random map for the character's movements (with probabilities), which bypassing holes (H) reaches from the beginning (S) to the end (G).</div>
+          <br>
+      <div class="input-container">
+        <button class="run-button" onclick="reloadPlot()">Run the game again</button>
       </div>
-    
+    </div>
+  </div>
+</div>
+  <div class="project-grid">
+    <div class="project-tile">
+        <h2>Optimal Policy (Expected Reward: {{ eval1 }})</h2>
+        <div>
+            {{ fig_html|safe }}
+        </div>
+    </div>
+    <div class="project-tile">
+        <h2>Random Policy (Expected Reward: {{ eval2 }})</h2>
+        <div>
+            {{ fig2_html|safe }}
+        </div>
+    </div>
+</div>
+
   <script>
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
       navLinks.classList.toggle('active');
     }
-    document.getElementById("citi").addEventListener("mouseover", function() {
-    document.querySelector(".all").classList.add("blue-background");
-});
 
-document.getElementById("citi").addEventListener("mouseout", function() {
-    document.querySelector(".all").classList.remove("blue-background");
-});
+    function reloadPlot() {
+        location.reload();
+    }
+    
     </script>
 </body>
 </html>

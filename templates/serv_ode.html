@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NN for ODEs</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+            position: relative;
+            z-index: 10; /* Ustawienie z-index na nawigacji, aby była nad kafelkami */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-family: monospace;
+            font-size: 20px;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 25px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            font-family: monospace;
+            display: block;
+        }
+
+        .nav-links li:hover {
+            background-color: black;
+        }
+
+        .nav-links li:hover .sub-menu {
+            display: block;
+        }
+
+        /* Style submenu */
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .sub-menu li {
+            display: block;
+            padding: 5px 20px;
+        }
+
+        .sub-menu li a {
+            display: block;
+            padding: 10px;
+        }
+
+        .sub-menu li:hover {
+            background-color: #030000;
+        }
+
+        /* Responsywne zmiany */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links li a {
+                padding: 15px;
+                width: 100%;
+            }
+
+            .sub-menu {
+                position: static;
+            }
+        }
+        .chart-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+          margin: 20px auto;
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+          max-width: 800px;
+          overflow: hidden;
+      }
+
+      .parameters-container {
+          background-color: #333;
+          color: #ddd;
+          padding: 15px;
+          border-radius: 8px;
+          font-size: 14px;
+          width: 120px;
+          position: absolute;
+          top: 100px;
+          right: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .parameters-container input[type="text"], 
+.parameters-container input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: #444;
+    color: white;
+}
+
+.parameters-container label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.parameters-container label input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+        .chart-container {
+            background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .subtitle {
+            position: relative;
+            z-index: 2;
+            font-size: 18px;
+            font-family: monospace;
+            line-height: 1.8;
+            color: #d3d3d3;
+            text-align: center;
+        }
+
+        .equation-input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+}
+.run-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reload-button {
+    margin-top: 7px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1f1f1f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+        .reload-button:hover {
+            background-color: #6a6969;
+        }
+        .run-button:hover {
+            background-color: #555;
+        }
+        .plot-container {
+          margin-top: 40px;
+          width: 70%;
+          max-width: 700px;
+          height: 400px;
+          background-color: rgb(0, 0, 0);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 15px;
+      }
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <div class="logo">Neural Network for ODEs</div>
+        <ul class="nav-links">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/education">Education</a></li>
+            <li>
+                <a href="/students">Technologies ≡</a>
+                <ul class="sub-menu sub-menu2">
+                    <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                    <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                    <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                    <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                    <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Projects ↓</a>
+                <ul class="sub-menu sub-menu1">
+                    <li><a href="/comercial_projects">Commercial</a></li>
+                    <li><a href="/own">My own projects</a></li>
+                    <li><a href="/students">Student projects</a></li>
+                </ul>
+            </li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+  
+  
+<div class="chart-container">
+  <!-- Wprowadzenie formuły ODE i przycisk uruchamiający -->
+  <div>
+      <div class="subtitle">
+          <div class="label">Insert ODE formula and run the real-time NN solver:</div>
+      </div>
+      <div class="input-container">
+        <input type="text" class="equation-input" id="equation" value="y'=y" readonly>
+        <button class="run-button" onclick="reloadPlot()">Run neural network</button>
+    </div>
+  </div>
+</div>
+
+<div id="plotly-chart" class="plot-container">
+<p id="loading-text" style="color: white; text-align: center;">Starting the neural network...</p>
+<img id="plot-image" src="" alt="Plot will appear here..." style="width: 100%; height: auto; display: none;">
+</div>
+
+<!-- Prawe okno do ustawiania parametrów -->
+<div class="parameters-container">
+  <label>Parameters:<br></label>
+  <div>
+      <label for="initial-value">Initial value g(0):</label>
+      <input type="number" id="initial-value" value="1">
+  </div>
+  <div>
+      <label for="random-seed">
+          <input type="checkbox" id="random-seed"> Use random seed
+      </label>
+  </div>
+  <div>
+      <label for="neurons">Number of neurons:</label>
+      <input type="number" id="neurons" value="50">
+  </div>
+  <div>
+      <label for="layers">Number of layers:</label>
+      <input type="number" id="layers" value="1">
+  </div>
+  <div>
+      <label for="epochs">Epochs number:</label>
+      <input type="number" id="epochs" value="100">
+  </div>
+  <div>
+      <label for="use-adam">
+          <input type="checkbox" id="use-adam"> Use Adam optimizer
+      </label>
+  </div>
+  <button class="reload-button" onclick="reloadPlot()">Reload</button>
+</div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+
+    let source;
+
+window.onload = function() {
+    reloadPlot();
+};
+
+function reloadPlot() {
+    const g0 = document.getElementById('initial-value').value;
+    const num_neurons = document.getElementById('neurons').value;
+    const num_iters = document.getElementById('epochs').value;
+    const layers = document.getElementById('layers').value;
+    const is_random = document.getElementById('random-seed').checked ? 1 : 0;
+    const is_adam = document.getElementById('use-adam').checked ? 1 : 0;
+    
+    if (source) {
+        source.close();
+    }
+    const url = `/update_plot?g0=${g0}&num_neurons=${num_neurons}&num_iters=${num_iters}&layers=${layers}&is_random=${is_random}&is_adam=${is_adam}`;
+    
+    // nowe połączenie EventSource z parametrami
+    source = new EventSource(url);
+    
+    source.onmessage = function(event) {
+        $('#loading-text').hide();
+        $('#plot-image').show();
+        $('#plot-image').attr('src', "data:image/png;base64," + event.data);
+    };
+    
+    source.onerror = function(event) {
+        console.error("Error in receiving updates:", event);
+        source.close();
+    };
+}
+
+    
+  </script>
+</body>
+</html>

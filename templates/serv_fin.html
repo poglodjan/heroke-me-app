@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Engineering</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+
+  nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-family: monospace;
+  display: block;
+}
+
+.nav-links li:hover {
+  background-color: black;
+}
+
+.nav-links li:hover .sub-menu {
+  display: block;
+}
+
+/* Style submenu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.sub-menu li {
+  display: block;
+  padding: 5px 20px;
+}
+
+.sub-menu li a {
+  display: block;
+  padding: 10px;
+}
+
+.sub-menu li:hover {
+  background-color: #030000;
+}
+
+/* Responsywne zmiany */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .sub-menu {
+    position: static;
+  }
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    padding-top: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.project-tile {
+    position: relative;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    padding: 10px; /* Padding wokół kafelka */
+    height: 350px; /* Ustalona wysokość dla każdego kafelka */
+}
+
+.project-tile:hover {
+    transform: scale(1.05);
+}
+
+.project-image {
+    width: 100%;
+    height: 320px; /* Zwiększona wysokość obrazka */
+    background-size: contain; /* Obraz będzie zachowywał proporcje */
+    background-position: center;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.project-title {
+    padding: 5px 15px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    font-family: monospace;
+}
+
+.project-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    visibility: hidden;
+    border-radius: 10px; /* Dopasowanie do zaokrąglenia kafelka */
+}
+
+.project-tile:hover .project-description {
+    opacity: 1;
+    visibility: visible;
+}
+
+        .project-tile:hover .project-description {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+            }
+        }
+
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Financial Engineering</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links">
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/education">Education</a></li>
+        <li>
+          <a href="/students">Technologies ≡</a>
+          <ul class="sub-menu sub-menu2">
+              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Projects ↓</a>
+          <ul class="sub-menu sub-menu1">
+            <li><a href="/comercial_projects">Commercial</a></li>
+            <li><a href="/own">My own projects</a></li>
+            <li><a href="/students">Student projects</a></li>
+          </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="project-grid">
+    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/fin')" desabled>
+        <div class="project-image" style="background-image: url('/static/forward.png');"></div>
+        <div class="project-title">FX Forward</div>
+        <div class="project-description">
+            The simplest way to hedge your amount
+        </div>
+    </div>
+    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/explor')" desabled>
+        <div class="project-image" style="background-image: url('/static/collar.png');"></div>
+        <div class="project-title">Collar</div>
+        <div class="project-description">
+          Protects against unfavorable moves while allowing limited upside
+        </div>
+    </div>
+    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/ode')" desabled>
+        <div class="project-image" style="background-image: url('/static/KO.png');"></div>
+        <div class="project-title">Knock-Outs</div>
+        <div class="project-description">
+          Forward contract that expires if a specific level is reached.
+        </div>
+    </div>
+    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/block')" desabled>
+        <div class="project-image" style="background-image: url('/static/option.png');"></div>
+        <div class="project-title">Options</div>
+        <div class="project-description">
+          Provides the right, but not the obligation, to trade at a set rate.
+        </div>
+    </div>
+    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/bio')" desabled>
+        <div class="project-image" style="background-image: url('/static/rebate.png');"></div>
+        <div class="project-title">Options with rebate</div>
+        <div class="project-description">
+          Receives a rebate if the option is not exercised.
+        </div>
+    </div>
+    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/rain')">
+        <div class="project-image" style="background-image: url('/static/spread.png');"></div>
+        <div class="project-title">Spreads</div>
+        <div class="project-description">
+          Limits the cost of options by capping potential gains.
+        </div>
+    </div>
+</div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+
+    </script>
+</body>
+</html>
+

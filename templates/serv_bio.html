@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Data Analysis</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
     
     <style>
-        body {
-    font-family: Arial, sans-serif;
+    body {
+    font-family: monospace;
     margin: 0;
     padding: 0;
     background-color: black;
+    color: white;
   }
   
 
@@ -128,33 +129,100 @@
   }
 }
 
-  .place1 {
-        background-color: black;
-        color: white;
-        margin-top: 50px;
-        margin-left:10%;
-        height: 400px;
-        width: auto;
-        font-family: monospace;
-        float: left;
-    }
-    .place2 {
-        background-color: black;
-        color: white;
-        margin-top: 50px;
-        margin-left:10%;
-        height: 400px;
-        width: auto;
-        font-family: monospace;
-        float: left;
-    }
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.input-container label {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-family: monospace;
+    color: white;
+}
+
+        .input-container select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            width: 200px;
+            max-width: 100%;
+            font-family: monospace;
+            background-color: #333;
+            color: white;
+        }
+
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            padding-top: 50px;
+        }
+
+        .project-tile {
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+        }
+
+        .project-tile:hover {
+            transform: scale(1.05);
+        }
+
+        .project-title {
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            font-family: monospace;
+            background-color: #555;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .plot-container {
+            background-color: #555;
+            border-radius: 10px;
+            padding: 10px;
+            height: auto;
+        }
+
+
+        .plot {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
 
     </style>
 </head>
 <body>
   <nav>
     <div class="nav-container">
-      <div class="logo">Contact</div>
+      <div class="logo">Data Analysis</div>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
       <ul class="nav-links">
         <li><a href="/profile">Profile</a></li>
@@ -182,47 +250,48 @@
     </div>
   </nav>
 
-<div class="all">
-<div class="place1">
-  <h1>Me:</h1>
-    <h2 id="citi" class="title">Visit by <a href="https://www.linkedin.com/in/jan-poglod/" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-    <img src="https://banner2.cleanpng.com/20180518/yk/kisspng-computer-icons-linkedin-5aff0283a31f04.0344839015266617636682.jpg" width="40">
+  <div class="input-container">
+    <label for="dataset-select"><span style="color:#983e3e;">PowerPointIsBoring</span> instead create interactive web presentations for your clients from bioinformatics. Real-time analysis from drug development and bio-engineering algorithms are presented below:</label>
+</div>
 
-    <h2 id="citi" class="title">Visit by <a href="https://github.com/poglodjan" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-      <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" width="40">
-
-      <br>
-      <h2>+48 735 928 366</h2>
-      <h2>poglodjan@gmail.com</h2>
+<div class="project-grid">
+  <div class="project-tile">
+    <div class="project-title">Needleman-Wunsch Algorithm</div>
+    <div class="plot-container">
+        {{ fig4 | safe }}
     </div>
+</div>
 
-  <div class="place2">
-    <h1>Rabyte Assosiaction:</h1>
-    <h2 id="citi" class="title">Visit by <a href="https://rabyte.pl" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-      <img src="https://banner2.cleanpng.com/20180518/yk/kisspng-computer-icons-linkedin-5aff0283a31f04.0344839015266617636682.jpg" width="40">
-  
-        <h2 id="citi" class="title">Visit by <a href="https://www.facebook.com/rabyteassociation" style="text-decoration: none;color: #1758E1;" target="_blank">link</a></h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgiEE6r1c47eWrOG1peHvCPdl5jDo6bqpfeQ&usqp=CAU" width="40">
-    </div>
-  
-    <div class="place2">
-      <h1>Exoself:</h1>
-        <h3 id="citi" class="title">Text me on email:<br>poglodjan@gmail.com</h3>
-    
+  <div class="project-tile">
+      <div class="project-title">ROC chart</div>
+      <div class="plot-container">
+          {{ fig1 | safe }}
       </div>
-    
-  <script>
+  </div>
+  
+  <div class="project-tile">
+      <div class="project-title">Improvement vs Detoriation</div>
+      <div class="plot-container">
+          {{ fig2 | safe }}
+      </div>
+  </div>
+  
+  <div class="project-tile">
+      <div class="project-title">Drug Concentration</div>
+      <div class="plot-container">
+          {{ fig3 | safe }}
+      </div>
+  </div>
+  
+</div>
+
+<script>
+
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
       navLinks.classList.toggle('active');
     }
-    document.getElementById("citi").addEventListener("mouseover", function() {
-    document.querySelector(".all").classList.add("blue-background");
-});
-
-document.getElementById("citi").addEventListener("mouseout", function() {
-    document.querySelector(".all").classList.remove("blue-background");
-});
+    
     </script>
 </body>
 </html>
