@@ -223,9 +223,8 @@ h1 {
         <li>
           <a href="#">Projects ↓</a>
           <ul class="sub-menu sub-menu1">
-            <li><a href="/comercial_projects">Commercial</a></li>
             <li><a href="/own">My own projects</a></li>
-            <li><a href="/students">Student projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
           </ul>
         </li>
         <li><a href="/contact">Contact</a></li>
@@ -244,6 +243,10 @@ h1 {
     </div>
   </div>
 </div>
+
+<div id="loading" style="text-align: center; font-size: 24px; color: white; margin-bottom: 500px;">
+    Loading the optimal policy...
+</div>
   <div class="project-grid">
     <div class="project-tile">
         <h2>Optimal Policy (Expected Reward: {{ eval1 }})</h2>
@@ -260,6 +263,12 @@ h1 {
 </div>
 
   <script>
+    window.addEventListener('load', function() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'grid';
+
+});
+
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
       navLinks.classList.toggle('active');

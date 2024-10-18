@@ -146,7 +146,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     opacity: 1;
     padding: 10px; /* Padding wokół kafelka */
-    height: 350px; /* Ustalona wysokość dla każdego kafelka */
+    height: 330px; /* Ustalona wysokość dla każdego kafelka */
 }
 
 .project-tile:hover {
@@ -155,7 +155,7 @@
 
 .project-image {
     width: 100%;
-    height: 320px; /* Zwiększona wysokość obrazka */
+    height: 290px; /* Zwiększona wysokość obrazka */
     background-size: contain; /* Obraz będzie zachowywał proporcje */
     background-position: center;
     border-radius: 5px;
@@ -209,6 +209,50 @@
             }
         }
 
+  .container {
+    background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
+    padding: 15px;
+    padding-left: 50px;
+    margin-top: 30px;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dwie kolumny */
+    gap: 20px; /* Odstęp między kolumnami */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    font-size: 14px;
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(23, 88, 225, 0.7);
+}
+
     </style>
 </head>
 <body>
@@ -232,15 +276,50 @@
         <li>
           <a href="#">Projects ↓</a>
           <ul class="sub-menu sub-menu1">
-            <li><a href="/comercial_projects">Commercial</a></li>
             <li><a href="/own">My own projects</a></li>
-            <li><a href="/students">Student projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
           </ul>
         </li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
   </nav>
+
+  <div class="container">
+    <form>
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="base">Base:</label>
+                <input type="text" id="base" name="base" value="EUR">
+            </div>
+
+            <div class="form-group">
+                <label for="term">Term:</label>
+                <input type="text" id="term" name="term" value="USD">
+            </div>
+
+            <div class="form-group">
+                <label for="spot">Spot:</label>
+                <input type="text" id="spot" name="spot" value="1.5000">
+            </div>
+
+            <div class="form-group">
+                <label for="company">Number of flows:</label>
+                <input type="text" id="flows" name="company" value="16">
+            </div>
+
+            <div class="form-group">
+                <label for="notional">Notional:</label>
+                <input type="text" id="notional" name="notional" value="1 000 000">
+            </div>
+
+            <div class="form-group">
+                <label for="expiry">Expiry Date:</label>
+                <input type="text" id="expiry" name="expiry" value="01/01/2025">
+            </div>
+        </div>
+    </form>
+</div>
 
   <div class="project-grid">
     <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/fin')" desabled>

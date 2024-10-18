@@ -250,9 +250,8 @@
         <li>
           <a href="#">Projects ↓</a>
           <ul class="sub-menu sub-menu1">
-            <li><a href="/comercial_projects">Commercial</a></li>
             <li><a href="/own">My own projects</a></li>
-            <li><a href="/students">Student projects</a></li>
+            <li><a href="/comercial_projects">Commercial</a></li>
           </ul>
         </li>
         <li><a href="/contact">Contact</a></li>
@@ -261,7 +260,7 @@
   </nav>
 
   <div class="input-container">
-    <label for="dataset-select"><span style="color:#983e3e;">PowerPointIsBoring</span> instead create interactive web presentations for your clients from data analysis. Select one dataset below and see some sample real-time analyses:</label>
+    <label for="dataset-select"><span style="color:#983e3e;">PowerPointIsBoring</span> instead create interactive web presentations from data analysis. Select one dataset below and see some sample real-time analyses:</label>
     <select id="dataset-select">
         <option value="iris" {% if selected_dataset == 'iris' %}selected{% endif %}>Iris</option>
         <option value="titanic" {% if selected_dataset == 'titanic' %}selected{% endif %}>Titanic</option>
@@ -269,11 +268,11 @@
     </select>
 </div>
 
-<div id="loading" style="text-align: center; font-size: 24px; color: white;">
-  Loading...
+<div id="loading" style="text-align: center; font-size: 24px; color: white; margin-bottom: 500px;">
+  Training models...
 </div>
 
-<div class="project-grid" id="content" style="display: none;">
+<div class="project-grid">
   <div class="project-tile">
     <div class="project-title">Analysis 1</div>
     <div class="plot-container">

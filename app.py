@@ -420,7 +420,7 @@ def index():
                           'Software engineering projects in Python and C++',
                             'Proficiency in linux commands',
                             'Developing Machine learning and Computational intelligence projects',
-                            'Much joy of creating apps with Flask,JS,CSS,html',
+                            'Creating apps with Flask,JS,CSS,html',
                               'Knowledge of tree-based and advanced algorithms',
                               'Efficiency in designing sql queries',
                               'Good knowledge of SAS language and handling of statistical events',
@@ -445,7 +445,7 @@ def index():
     data2 = pd.DataFrame(data2).sort_values(by='How much do I know and like', ascending=False)
 # computer science
     fig = px.bar(data, x="x", y='How much do I know and like', text="Category",
-             color_discrete_sequence=['#B21223']*len(data['Category']), hover_data={"How much do I know and like":False,"Category":False})
+             color_discrete_sequence=['#983e3e']*len(data['Category']), hover_data={"How much do I know and like":False,"Category":False})
     fig.update_layout(paper_bgcolor='black') 
     fig.update_traces(textposition='outside', textfont=dict(size=8,family='monospace'))  
     fig.update_layout(plot_bgcolor='black')  

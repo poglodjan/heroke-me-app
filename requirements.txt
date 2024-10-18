@@ -13,3 +13,4 @@ seaborn
 scikit-learn
 autograd
 gym
+kaleido
