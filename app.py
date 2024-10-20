@@ -65,9 +65,31 @@ def own():
 @app.route('/fin')
 def fin():
     return redirect(url_for('fin_page'))
-@app.route('/fin_page')
+@app.route('/fin_page', methods=['GET', 'POST'])
 def fin_page():
+    if request.method == 'POST':
+        selected_tiles = request.form.getlist('selected_tiles')  
+        print(selected_tiles) 
+        return redirect(url_for('success_page'))
     return render_template('serv_fin.html')
+@app.route('/loading')
+def success_page():
+    return '''
+    <html>
+        <head>
+            <script type="text/javascript">
+                alert("Sorry, temporarily inactive. The application is developing to be big!");
+                window.location.href = "/fin_page";  // Powrót do formularza po zamknięciu alertu
+            </script>
+        </head>
+        <body>
+        </body>
+    </html>
+    '''
+    
+############
+# Blockchain
+############
 @app.route('/block')
 def block():
     return redirect(url_for('block_page'))
@@ -168,7 +190,7 @@ def ode():
 def update_plot():
     g0 = float(request.args.get('g0', 1))
     num_neurons = int(request.args.get('num_neurons', 50))
-    num_iter = int(request.args.get('num_iters', 100))
+    num_iter = int(request.args.get('num_iters', 500))
     layers = int(request.args.get('layers', 1))
     is_random = bool(int(request.args.get('is_random', 0)))
     is_adam = bool(int(request.args.get('is_adam', 1)))
@@ -225,7 +247,7 @@ def update_plot():
                 buf.seek(0)
                 img_base64 = base64.b64encode(buf.read()).decode('utf-8')
 
-                yield f"data: {img_base64}\n\n"
+                if i%2==0: yield f"data: {img_base64}\n\n"
 
     N = 100
     if not is_random: np.random.seed(320575)
@@ -252,7 +274,7 @@ def explor():
     return redirect(url_for('explor_page'))
 @app.route('/explor_page')
 def explor_page():
-    dataset_name = request.args.get('dataset', 'iris')  # domyślnie 'iris'
+    dataset_name = request.args.get('dataset', 'iris')  
 
     if dataset_name == 'iris':
         data = datasets.load_iris()

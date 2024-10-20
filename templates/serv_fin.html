@@ -158,6 +158,7 @@
     height: 290px; /* Zwiększona wysokość obrazka */
     background-size: contain; /* Obraz będzie zachowywał proporcje */
     background-position: center;
+    background-repeat: no-repeat; /* Obraz nie będzie się powtarzał */
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -189,7 +190,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     visibility: hidden;
-    border-radius: 10px; /* Dopasowanie do zaokrąglenia kafelka */
+    border-radius: 10px; 
 }
 
 .project-tile:hover .project-description {
@@ -209,7 +210,7 @@
             }
         }
 
-  .container {
+        .container {
     background: linear-gradient(135deg, rgba(23, 88, 225, 0.5), rgba(23, 215, 225, 0.2));
     padding: 15px;
     padding-left: 50px;
@@ -218,14 +219,19 @@
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
 }
+
 
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dwie kolumny */
-    gap: 20px; /* Odstęp między kolumnami */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .form-group {
@@ -253,6 +259,58 @@ input[type="text"]:focus {
     box-shadow: 0 0 5px rgba(23, 88, 225, 0.7);
 }
 
+.submit-btn {
+    background-color: #28a745; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center; 
+    align-items: center; 
+    display: flex;
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    margin-top: 20px; 
+}
+
+.submit-btn:hover {
+    background-color: #218838; 
+}
+
+.name-input {
+    font-size: 14px;
+    font-family: monospace;
+    padding: 2px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 3px; 
+    margin-top: 3px;
+    width: 100px;
+}
+
+.name-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(23, 88, 225, 0.7);
+}
+
+.tile-checkbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    width: 20px;
+    height: 20px;
+}
+
+#tileForm {
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+
     </style>
 </head>
 <body>
@@ -266,11 +324,11 @@ input[type="text"]:focus {
         <li>
           <a href="/students">Technologies ≡</a>
           <ul class="sub-menu sub-menu2">
-              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/github.png" width="15"></a></li>
-              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/github.png" width="15"></a></li>
-              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/github.png" width="15"></a></li>
-              <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/github.png" width="15"></a></li>
-              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience">Python <img style="float: right;" src="/static/derivatives/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/R_expierence">R <img style="float: right;" src="/static/derivatives/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/SQL_experience">SQL/SAS <img style="float: right;" src="/static/derivatives/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/C_experience">C/C++ <img style="float: right;" src="/static/derivatives/github.png" width="15"></a></li>
+              <li><a href="https://github.com/poglodjan/Python_experience/tree/main/Machine%20Learning">Machine Learning <img style="float: right;" src="/static/derivatives/github.png" width="15"></a></li>
             </ul>
         </li>
         <li>
@@ -285,7 +343,11 @@ input[type="text"]:focus {
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container" style="font-family: monospace;">
+    <h3 style="color:white">
+      Fill the data with your flow and select at least one derivative below to price risk for
+      <input type="text" placeholder="enter your name (optional)" class="name-input">
+    </h3>
     <form>
         <div class="form-grid">
             <div class="form-group">
@@ -315,56 +377,180 @@ input[type="text"]:focus {
 
             <div class="form-group">
                 <label for="expiry">Expiry Date:</label>
-                <input type="text" id="expiry" name="expiry" value="01/01/2025">
+                <input type="text" id="expiry" name="expiry" value="01/12/2025">
             </div>
         </div>
     </form>
 </div>
 
-  <div class="project-grid">
-    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/fin')" desabled>
-        <div class="project-image" style="background-image: url('/static/forward.png');"></div>
-        <div class="project-title">FX Forward</div>
+  <form id="tileForm" method="POST" action="/fin_page">
+      <button type="submit" class="submit-btn">I've chosen derivatives and continue</button>
+      <div class="project-grid">
+          <div class="project-tile" style="opacity: 1;">
+              <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="FX Forward">
+              <div class="project-image" style="background-image: url('/static/derivatives/forward.png');"></div>
+              <div class="project-title">FX Forward</div>
+              <div class="project-description">
+                  The simplest way to hedge your amount
+              </div>
+          </div>
+
+          <div class="project-tile" style="opacity: 1;">
+              <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Collar">
+              <div class="project-image" style="background-image: url('/static/derivatives/collar.png');"></div>
+              <div class="project-title">Collar</div>
+              <div class="project-description">
+                Protects against unfavorable moves while allowing limited upside
+              </div>
+          </div>
+
+          <div class="project-tile" style="opacity: 1;">
+            <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Participator">
+            <div class="project-image" style="background-image: url('/static/derivatives/partyp.png');"></div>
+            <div class="project-title">Participator</div>
+            <div class="project-description">
+              A derivative allowing partial participation in favorable currency movements while providing protection against unfavorable ones.
+            </div>
+        </div>
+
+          <div class="project-tile" style="opacity: 1;">
+              <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Options">
+              <div class="project-image" style="background-image: url('/static/derivatives/option.png');"></div>
+              <div class="project-title">Options</div>
+              <div class="project-description">
+                Provides the right, but not the obligation, to trade at a set rate.
+              </div>
+          </div>
+
+          <div class="project-tile" style="opacity: 1;">
+              <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Options with rebate">
+              <div class="project-image" style="background-image: url('/static/derivatives/rebate.png');"></div>
+              <div class="project-title">Options with rebate</div>
+              <div class="project-description">
+                Receives a rebate if the option is not exercised.
+              </div>
+          </div>
+
+          <div class="project-tile" style="opacity: 1;">
+              <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Spreads">
+              <div class="project-image" style="background-image: url('/static/derivatives/spread.png');"></div>
+              <div class="project-title">Spreads</div>
+              <div class="project-description">
+                Limits the cost of options by capping potential gains.
+              </div>
+          </div>
+
+        <div class="project-tile" style="opacity: 1;">
+            <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Capped">
+            <div class="project-image" style="background-image: url('/static/derivatives/capped.png');"></div>
+            <div class="project-title">Capped Forward</div>
+            <div class="project-description">
+              A forward contract with a maximum limit on the value that can be reached during the contract's duration.
+            </div>
+        </div>
+
+        <div class="project-tile" style="opacity: 1;">
+          <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Loss capped">
+          <div class="project-image" style="background-image: url('/static/derivatives/loss.png');"></div>
+          <div class="project-title">Loss Capped Forward</div>
+          <div class="project-description">
+            A forward contract that limits the maximum loss, protecting against large losses while still allowing for gains.
+          </div>
+      </div>
+
+      <div class="project-tile" style="opacity: 1;">
+        <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Leveraged">
+        <div class="project-image" style="background-image: url('/static/derivatives/lev.png');"></div>
+        <div class="project-title">Leveraged Forward</div>
         <div class="project-description">
-            The simplest way to hedge your amount
+          A forward contract where gains or losses are strengthened, allowing for a higher potential return, but also increased risk.
         </div>
     </div>
-    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/explor')" desabled>
-        <div class="project-image" style="background-image: url('/static/collar.png');"></div>
-        <div class="project-title">Collar</div>
-        <div class="project-description">
-          Protects against unfavorable moves while allowing limited upside
-        </div>
-    </div>
-    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/ode')" desabled>
-        <div class="project-image" style="background-image: url('/static/KO.png');"></div>
-        <div class="project-title">Knock-Outs</div>
-        <div class="project-description">
-          Forward contract that expires if a specific level is reached.
-        </div>
-    </div>
-    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/block')" desabled>
-        <div class="project-image" style="background-image: url('/static/option.png');"></div>
-        <div class="project-title">Options</div>
-        <div class="project-description">
-          Provides the right, but not the obligation, to trade at a set rate.
-        </div>
-    </div>
-    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/bio')" desabled>
-        <div class="project-image" style="background-image: url('/static/rebate.png');"></div>
-        <div class="project-title">Options with rebate</div>
-        <div class="project-description">
-          Receives a rebate if the option is not exercised.
-        </div>
-    </div>
-    <div class="project-tile" style="opacity: 1;" onclick="fadeOutTiles('/rain')">
-        <div class="project-image" style="background-image: url('/static/spread.png');"></div>
-        <div class="project-title">Spreads</div>
-        <div class="project-description">
-          Limits the cost of options by capping potential gains.
-        </div>
+
+  <div class="project-tile" style="opacity: 1;">
+    <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Step Down Forward">
+    <div class="project-image" style="background-image: url('/static/derivatives/step forw.png');"></div>
+    <div class="project-title">Step Down Forward</div>
+    <div class="project-description">
+      A forward contract where the rate decreases at predefined trigger, reducing the potential gains and limiting losses.
     </div>
 </div>
+
+<div class="project-tile" style="opacity: 1;">
+  <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Step Down Collar">
+  <div class="project-image" style="background-image: url('/static/derivatives/step collar.png');"></div>
+  <div class="project-title">Step Down Collar</div>
+  <div class="project-description">
+    A Collar contract where the rate decreases at predefined trigger, reducing the potential gains and limiting losses.
+  </div>
+</div>
+
+<div class="project-tile" style="opacity: 1;">
+  <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Convertible Forward">
+  <div class="project-image" style="background-image: url('/static/derivatives/conv forw.png');"></div>
+  <div class="project-title">Convertible Forward</div>
+  <div class="project-description">
+    Provides downside protection while limiting potential gains by locking the exchange rate at a predefined trigger, allowing partial participation in favorable market movements.
+  </div>
+</div>
+
+<div class="project-tile" style="opacity: 1;">
+<input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Step Down Collar">
+<div class="project-image" style="background-image: url('/static/derivatives/conv collar.png');"></div>
+<div class="project-title">Convertible Collar</div>
+<div class="project-description">
+  Provides downside protection while limiting potential gains by locking the exchange rate at a predefined (better than forward) trigger, allowing partial participation in favorable market movements.
+</div>
+</div>
+
+<div class="project-tile" style="opacity: 1;">
+  <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Knock-Out Forward">
+  <div class="project-image" style="background-image: url('/static/derivatives/KO forw.png');"></div>
+  <div class="project-title">Knock-Out Forward</div>
+  <div class="project-description">
+    A forward contract that automatically terminates if the exchange rate reaches a predetermined trigger during the contract period.
+  </div>
+</div>
+
+<div class="project-tile" style="opacity: 1;">
+  <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Knock-Out Forward with sub">
+  <div class="project-image" style="background-image: url('/static/derivatives/KO forw sub.png');"></div>
+  <div class="project-title">Knock-Out Forward with Subsidy</div>
+  <div class="project-description">
+    A knock-out forward contract where the cost is partially subsidized, offering more favorable terms under certain conditions.
+  </div>
+</div>
+
+<div class="project-tile" style="opacity: 1;">
+  <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Knock-Out Collar">
+  <div class="project-image" style="background-image: url('/static/derivatives/KO forw.png');"></div>
+  <div class="project-title">Knock-Out Collar</div>
+  <div class="project-description">
+    A collar option that expires when the exchange rate hits a specific threshold, providing protection but limiting participation.
+  </div>
+</div>
+
+<div class="project-tile" style="opacity: 1;">
+  <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="Knock-Out Collar with sub">
+  <div class="project-image" style="background-image: url('/static/derivatives/KO.png');"></div>
+  <div class="project-title">Knock-Out Collar with Subsidy</div>
+  <div class="project-description">
+    A knock-out collar with a subsidy that reduces the cost of the contract, expiring if a certain exchange rate is reached.
+  </div>
+  </div>
+
+  <div class="project-tile" style="opacity: 1;">
+    <input type="checkbox" class="tile-checkbox" name="selected_tiles" value="TARN">
+    <div class="project-image" style="background-image: url('/static/derivatives/forward.png');"></div>
+    <div class="project-title">TARN/TARF</div>
+    <div class="project-description">
+      A derivative where the buyer receives enhanced returns for favorable currency movements, but the contract ends once a CAP payout is met.
+    </div>
+    </div>
+
+      </div>
+  </form>
+
 
   <script>
     function toggleMenu() {
